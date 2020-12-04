@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './Nav.css';
 import { Link } from 'react-router-dom'
+import '../Css/Nav.css';
 
 
 const navSlide = () => {
