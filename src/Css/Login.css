@@ -1,0 +1,9 @@
+.NotLogged {
+    height: 100vh;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+}

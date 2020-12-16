@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 
 export default class CreateOrder extends React.Component {
 
@@ -22,7 +21,8 @@ export default class CreateOrder extends React.Component {
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
-                console.log(data);
+                document.querySelector(".data").innerHTML = data.message;
+                form.reset()
             }
             catch (e) {
                 console.log(e)
@@ -32,9 +32,13 @@ export default class CreateOrder extends React.Component {
     }
 
     render() {
+        const ClearData = () => {
+            document.querySelector('.data').innerHTML = '';
+        }
+
         return (
             <form>
-                <Link to={`/`}><h1>Home</h1></Link>
+                <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
                 <h2>Create order</h2>
                 <label htmlFor="itemid">Item Id</label>
                 <input type="text" name="itemid" required/>
@@ -42,7 +46,7 @@ export default class CreateOrder extends React.Component {
                 <label htmlFor="store">Store</label>
                 <input type="text" name="store" required/>
 
-                <button>Create</button>
+                <button onClick={() => {setTimeout(ClearData, 3000)}}>Create</button>
             </form>
         );
     }

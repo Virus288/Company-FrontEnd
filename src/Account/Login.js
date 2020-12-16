@@ -26,14 +26,13 @@ class Login extends React.Component {
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
-                console.log(data);
-                sessionStorage.setItem('jwt', data.token);
-                sessionStorage.setItem('user', data.user);
                 if(data.errors){
                     emailError.textContent = data.errors.email;
                     passwordError.textContent = data.errors.password;
                 }
-                if(data["user"]){
+                if(data["user"] && data['user'] !== undefined){
+                    sessionStorage.setItem('jwt', data.token);
+                    sessionStorage.setItem('user', data.user);
                     this.props.history.push('/');
                 }
             }
@@ -46,17 +45,22 @@ class Login extends React.Component {
 
     render(){
         return (
-            <div>
-                <Link to={`/`}><h1>Home</h1></Link>
+            <div className="NotLogged">
                 <form>
+                    <Link to={`/`}><h1>Home</h1></Link>
                     <h2>Login</h2>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" required />
-                    <div className="email error"></div>
 
-                    <label htmlFor="email">Password</label>
-                    <input type="password" name="password" required />
-                    <div className="password error"></div>
+                    <div className="input">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" required />
+                        <div className="email error"></div>
+                    </div>
+
+                    <div className="input">
+                        <label htmlFor="email">Password</label>
+                        <input type="password" name="password" required />
+                        <div className="password error"></div>
+                    </div>
 
                     <button>Login</button>
                 </form>

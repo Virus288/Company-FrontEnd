@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from "react-router-dom";
 
 // Functions
 import DoneRender from './DoneRender'
@@ -28,9 +27,8 @@ export default class Orders extends React.Component{
     render() {
         return (
             <div className="container">
-                <Link to={`/`}><h1>Home</h1></Link>
                 <h1>General orders</h1>
-                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="btn">{this.state.Done ? 'Zakończone zamówienia' : 'Nie zakończone'}</button>
+                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Zakończone zamówienia' : 'Nie zakończone'}</button>
                 <ul className="orders">
                     {this.state.Done ? <DoneRender /> : <UnDoneRender />}
                 </ul>
