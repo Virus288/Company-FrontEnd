@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+This project was created as a free alternative for many other services. Its main reason to exist is to add privacy to users data. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting Started
 
 ## Available Scripts
+
+Because this project here is "development build", you can modyfy code by youself and build the way you want it. 
 
 In the project directory, you can run:
 
