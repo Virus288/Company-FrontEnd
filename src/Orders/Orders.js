@@ -28,7 +28,7 @@ export default class Orders extends React.Component{
         return (
             <div className="container">
                 <h1>General orders</h1>
-                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Zakończone zamówienia' : 'Nie zakończone'}</button>
+                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Finished' : 'Not finished'}</button>
                 <ul className="orders">
                     {this.state.Done ? <DoneRender /> : <UnDoneRender />}
                 </ul>

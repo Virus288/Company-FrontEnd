@@ -12,7 +12,7 @@ export default class DoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/orders?done=false`)
+        fetch(`${backend.backend}/getpayments?done=false`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -39,7 +39,7 @@ export default class DoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch(`${backend.backend}/orders`, {
+                    const res = await fetch(`${backend.backend}/updatepayment`, {
                         method: "POST",
                         body: JSON.stringify({ Done: true, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}
@@ -55,7 +55,8 @@ export default class DoneRender extends React.Component {
 
         const RenderData = this.state.Data.map(id => (
             <li key={id.id} id={id.id} className="list-group-item d-flex justify-content-between align-items-center">
-                <span>{id.ItemId}</span>
+                <span>{id.name}</span>
+                <span>{id.amount}</span>
                 <input onChange={MarkOrder} type="checkbox" className="checkbox" />
             </li>
         ))

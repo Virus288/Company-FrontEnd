@@ -1,23 +1,21 @@
 import React from 'react'
 import backend from "../Links.json"
 
-export default class DoneRender extends React.Component {
+export default class UnDoneRender extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             Data: [],
-            Errors: 0,
-            Done: false
+            Errors: 0
         };
     }
 
     FetchData() {
-        fetch(`${backend.backend}/orders?done=false`)
+        fetch(`${backend.backend}/getpayments?done=true`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
-                        Data: result,
-                        Done: false
+                        Data: result
                     });
                 },
                 (err) => {
@@ -39,9 +37,9 @@ export default class DoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch(`${backend.backend}/orders`, {
+                    const res = await fetch(`${backend.backend}/updatepayment`, {
                         method: "POST",
-                        body: JSON.stringify({ Done: true, id: e.target.parentElement.id}),
+                        body: JSON.stringify({ Done: false, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}
                     });
                     const data = await res.json();
@@ -54,8 +52,9 @@ export default class DoneRender extends React.Component {
         }
 
         const RenderData = this.state.Data.map(id => (
-            <li key={id.id} id={id.id} className="list-group-item d-flex justify-content-between align-items-center">
-                <span>{id.ItemId}</span>
+            <li style={{background: "red"}} key={id.id} id={id.id} className="list-group-item d-flex justify-content-between align-items-center">
+                <span>{id.name}</span>
+                <span>{id.amount}</span>
                 <input onChange={MarkOrder} type="checkbox" className="checkbox" />
             </li>
         ))

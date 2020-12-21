@@ -1,4 +1,5 @@
 import React from 'react'
+import backend from "../Links.json"
 
 export default class UnDoneRender extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class UnDoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch('http://localhost:5000/orders?done=true')
+        fetch(`${backend.backend}/orders?done=true`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -36,7 +37,7 @@ export default class UnDoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch('http://localhost:5000/orders', {
+                    const res = await fetch(`${backend.backend}/orders`, {
                         method: "POST",
                         body: JSON.stringify({ Done: false, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}

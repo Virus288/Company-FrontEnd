@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter, Link} from "react-router-dom";
+import backend from "../Links.json"
 
 class Register extends React.Component {
 
@@ -21,7 +22,7 @@ class Register extends React.Component {
             const password = form.password.value;
 
             try {
-                const res = await fetch('http://localhost:5000/signup', {
+                const res = await fetch(`${backend.backend}/signup`, {
                     method: "POST",
                     body: JSON.stringify({ name, email, password}),
                     headers: { 'Content-Type': 'application/json'}
@@ -49,7 +50,7 @@ class Register extends React.Component {
         return (
             <div className="NotLogged">
                 <form>
-                    <Link to={`/`}><h1>Home</h1></Link>
+                    <Link to={`/login`}><h1>Login</h1></Link>
                     <h2>Sign up</h2>
 
                     <div className="input">

@@ -11,8 +11,8 @@ export default class Simulation extends React.Component {
         return (
             <div className="box6">
                 <ul>
-                    <li>Symulacja sprzedaży wraz z wykresami</li>
-                    <li>Porównywanie sklepów/pracowników</li>
+                    <li>Simulate sales</li>
+                    <li>Compare stores/employees</li>
                 </ul>
             </div>
         )

@@ -1,4 +1,5 @@
 import React from 'react'
+import backend from "../Links.json";
 
 export default class AddEmployees extends React.Component {
 
@@ -18,7 +19,7 @@ export default class AddEmployees extends React.Component {
             const Salary = form.Salary.value;
 
             try {
-                const res = await fetch('http://localhost:5000/addemployyes', {
+                const res = await fetch(`${backend.backend}/addemployyes`, {
                     method: "POST",
                     body: JSON.stringify({ Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
                     headers: { 'Content-Type': 'application/json'}

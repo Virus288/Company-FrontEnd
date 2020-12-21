@@ -1,7 +1,7 @@
 import React from 'react'
 import backend from "../Links.json"
 
-export default class AddStock extends React.Component {
+export default class AddStore extends React.Component {
 
     componentDidMount() {
         const form = document.querySelector('form');
@@ -10,14 +10,15 @@ export default class AddStock extends React.Component {
             e.preventDefault();
 
             // Get data
-            let data = form.itemid.value.trim();
-            const itemid = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            const stock = form.stock.value;
+            const City = form.City.value;
+            const Street = form.Street.value;
+            const BuildingNumber = form.BuildingNumber.value;
+            const Employees = form.Employees.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addstock`, {
+                const res = await fetch(`${backend.backend}/addstore`, {
                     method: "POST",
-                    body: JSON.stringify({ itemid, stock}),
+                    body: JSON.stringify({ City, Street, BuildingNumber, Employees }),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
@@ -47,12 +48,18 @@ export default class AddStock extends React.Component {
         return (
             <form>
                 <h1 className="data" style={{fontsize: "large"}}> </h1>
-                <h2>Create order</h2>
-                <label htmlFor="itemid">Item Id</label>
-                <input type="text" name="itemid" required onClick={ClearData}/>
+                <h2>Add store</h2>
+                <label htmlFor="City">City</label>
+                <input type="text" name="City" required onClick={ClearData}/>
 
-                <label htmlFor="stock">Amount</label>
-                <input type="text" name="stock" required onClick={ClearData}/>
+                <label htmlFor="Street">Street</label>
+                <input type="text" name="Street" required onClick={ClearData}/>
+
+                <label htmlFor="BuildingNumber">Building number</label>
+                <input type="text" name="BuildingNumber" required onClick={ClearData}/>
+
+                <label htmlFor="Employees">Employees</label>
+                <input type="text" name="Employees" required onClick={ClearData}/>
 
                 <button>Create</button>
             </form>

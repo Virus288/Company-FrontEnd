@@ -1,5 +1,6 @@
 import React from 'react';
 import "../Css/Stock.css"
+import backend from "../Links.json"
 
 export default class WareHouse extends React.Component{
     constructor(props) {
@@ -11,7 +12,7 @@ export default class WareHouse extends React.Component{
     }
 
     FetchData() {
-        fetch('http://localhost:5000/stock')
+        fetch(`${backend.backend}/stock`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({

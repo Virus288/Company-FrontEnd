@@ -1,6 +1,7 @@
 import React from "react";
 import "../Css/Stores.css"
 import { withRouter } from "react-router-dom";
+import backend from "../Links.json"
 
 class StoreStock extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class StoreStock extends React.Component {
     }
 
     FetchData() {
-        fetch(`http://localhost:5000/stores?store=${this.props.match.params.store}`)
+        fetch(`${backend.backend}/stores?store=${this.props.match.params.store}`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -51,7 +52,7 @@ class StoreStock extends React.Component {
                 let data = [];
                 for(x=0;x<Object.keys(this.state.Data[0]).length;x++){
                     if(Number.isInteger(this.state.Data[0][y])){
-                        data.push(<li style={{textAlign: "left", margin: '5px'}} key={y}>Produkt {y} {this.state.Data[0][y]}</li>)
+                        data.push(<li style={{textAlign: "left", margin: '5px'}} key={y}>Product {y} {this.state.Data[0][y]}</li>)
                     }
                     y++;
                 }

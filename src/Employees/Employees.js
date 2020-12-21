@@ -12,8 +12,8 @@ export default class Employees extends React.Component {
         return (
             <div className="box4">
                 <ul>
-                    <Link to={`/getemployyes`}><li>Pracownicy</li></Link>
-                    <Link to={`/addemployees`}><li>Dodawanie pracownika lub sklepu</li></Link>
+                    <Link to={`/getemployyes`}><li>Employees</li></Link>
+                    <Link to={`/addemployees`}><li>Add employee</li></Link>
                 </ul>
             </div>
         )

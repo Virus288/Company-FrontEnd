@@ -1,6 +1,7 @@
 import React from "react";
 import "../Css/Employye.css"
 import {Link} from "react-router-dom";
+import backend from "../Links.json";
 
 export default class GetEmployyes extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ export default class GetEmployyes extends React.Component {
     }
 
     FetchData() {
-        fetch('http://localhost:5000/employyes')
+        fetch(`${backend.backend}/employyes`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -44,7 +45,7 @@ export default class GetEmployyes extends React.Component {
                 <li>Birthday: {id.Birthday}</li>
                 <li>Hiredate: {id.Hiredate}</li>
                 <li>Salary: {id.Salary} PLN</li>
-                <Link to={EmployeeLink(id.id)}><li>Edycja pracownika</li></Link>
+                <Link to={EmployeeLink(id.id)}><li>Edit employee</li></Link>
             </ul>
         ))
 

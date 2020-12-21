@@ -12,8 +12,8 @@ export default class Stock extends React.Component {
         return (
             <div className="box3">
                 <ul>
-                    <Link to={`/warehouse`}><li>Magazyn</li></Link>
-                    <Link to={`/addstock`}><li>Dodawanie towarów</li></Link>
+                    <Link to={`/warehouse`}><li>Warehouse</li></Link>
+                    <Link to={`/addstock`}><li>Add items to stock</li></Link>
                 </ul>
             </div>
         )

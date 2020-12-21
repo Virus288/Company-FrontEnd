@@ -1,6 +1,8 @@
+import backend from "../Links.json";
+
 const RequireAuth = async () => {
     try {
-        const res = await fetch('http://localhost:5000/checkiflogged', {
+        const res = await fetch(`${backend.backend}/checkiflogged`, {
             method: "POST",
             body: JSON.stringify({ token: sessionStorage.jwt} ),
             headers: { 'Content-Type': 'application/json'}
@@ -14,12 +16,7 @@ const RequireAuth = async () => {
 }
 
 const CheckIfAuth = () => {
-
-    if(sessionStorage.jwt){
-        return true
-    } else {
-        return false
-    }
+    return !!sessionStorage.jwt;
 }
 
 export {

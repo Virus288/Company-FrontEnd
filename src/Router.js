@@ -3,7 +3,7 @@ import React from "react";
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Functions
-import { Home } from './App'
+import {MainMenu} from './App'
 import Test from './home.js'
 import { CheckIfAuth } from './Account/Auth.js'
 import Register from "./Account/Register";
@@ -14,23 +14,33 @@ import CreateOrder from "./Orders/CreateOrder";
 import Stock from "./Stock/Stock";
 import Employees from "./Employees/Employees";
 import GetEmployyes from './Employees/GetEmployyes';
-import GetStores from "./Stores/Stores"
+import GetStores from "./Stores/GetStores"
 import Payments from "./Payments/Payments";
 import Simulation from "./Simulation/Simulation";
-import Sales from "./Sales/Sales";
 import { Look } from "./Look/Look";
 import WareHouse from "./Stock/WareHouse";
 import AddStock from "./Stock/AddStock";
 import AddEmployees from "./Employees/AddEmployees";
 import StoreStock from "./Stores/StoreStock";
 import EditEmployees from "./Employees/EditEmployees"
-import SalesStats from "./Sales/SalesStats";
+import SalesStats from "./Stores/SalesStats";
+import DailyStats from "./Stores/DailyStats";
+import Stores from "./Stores/Stores";
+import AddStore from "./Stores/AddStore";
+import CreatePayment from "./Payments/CreatePayment"
+import CreateInvoice from "./Payments/CreateInvoice";
 
 function Routers() {
     return (
         <Switch>
-            <Route path="/" exact component={Home} />
             <Route path="/test" exact component={Test}/>
+            <Route exact path="/" render={() => (
+                CheckIfAuth() ? (
+                    <MainMenu />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
             <Route exact path="/orders" render={() => (
                 CheckIfAuth() ? (
                     <Orders />
@@ -108,6 +118,13 @@ function Routers() {
                     <Redirect to="/login"/>
                 )
             )}/>
+            <Route exact path="/stores" render={() => (
+                CheckIfAuth() ? (
+                    <Stores />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
             <Route exact path="/getstores" render={() => (
                 CheckIfAuth() ? (
                     <GetStores />
@@ -122,9 +139,30 @@ function Routers() {
                     <Redirect to="/login"/>
                 )
             )}/>
+            <Route exact path="/addstore" render={() => (
+                CheckIfAuth() ? (
+                    <AddStore />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
             <Route exact path="/payments" render={() => (
                 CheckIfAuth() ? (
                     <Payments />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/createpayment" render={() => (
+                CheckIfAuth() ? (
+                    <CreatePayment />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/createinvoice" render={() => (
+                CheckIfAuth() ? (
+                    <CreateInvoice />
                 ) : (
                     <Redirect to="/login"/>
                 )
@@ -136,16 +174,16 @@ function Routers() {
                     <Redirect to="/login"/>
                 )
             )}/>
-            <Route exact path="/sales" render={() => (
+            <Route exact path="/salesstats/:store" render={() => (
                 CheckIfAuth() ? (
-                    <Sales />
+                    <SalesStats />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
-            <Route exact path="/salesstats" render={() => (
+            <Route exact path="/salesstats/:store/:date" render={() => (
                 CheckIfAuth() ? (
-                    <SalesStats />
+                    <DailyStats />
                 ) : (
                     <Redirect to="/login"/>
                 )

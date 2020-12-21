@@ -4,9 +4,11 @@ const Look = () => {
     return (
         <div className="box7">
             <ul>
-                <li>Tryb edycji wyglądu platformy</li>
-                <li>Możliwość wrzucenia danych funkcji na stronę lub wyrzucenia ich</li>
-                <li>Resize strony internetowej na węższy lub szerszy w zależności od usera</li>
+                <li>Edit navbar position and its size</li>
+                <li>Edit colors of app</li>
+                <li>Change font size</li>
+                <li>Add/remove additional menu on sidebar</li>
+                <li>Resize whole page and make content bigger/smaller</li>
             </ul>
         </div>
     )

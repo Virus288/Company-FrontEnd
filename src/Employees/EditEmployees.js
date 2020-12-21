@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from "react-router-dom";
+import backend from "../Links.json"
 
 class EditEmployees extends React.Component {
     constructor(props) {
@@ -31,10 +32,11 @@ class EditEmployees extends React.Component {
         form.Phonenumber.value = this.state.Data[0].Phonenumber
         form.Birthday.value = this.state.Data[0].Birthday.slice(0, 10)
         form.Hiredate.value = this.state.Data[0].Hiredate.slice(0, 10)
+        form.Salary.value = this.state.Data[0].Salary
     }
 
     FetchData() {
-        fetch(`http://localhost:5000/employyes?employee=${this.props.match.params.employee}`)
+        fetch(`${backend.backend}/employyes?employee=${this.props.match.params.employee}`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -71,11 +73,12 @@ class EditEmployees extends React.Component {
             const Phonenumber = form.Phonenumber.value;
             const Birthday = form.Birthday.value;
             const Hiredate = form.Hiredate.value;
+            const Salary = form.Salary.value
 
             try {
-                const res = await fetch('http://localhost:5000/editemployyes', {
+                const res = await fetch(`${backend.backend}/editemployyes`, {
                     method: "POST",
-                    body: JSON.stringify({ id, Name, Adress, Workplace, Phonenumber, Birthday, Hiredate}),
+                    body: JSON.stringify({ id, Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
@@ -131,7 +134,10 @@ class EditEmployees extends React.Component {
                     <label htmlFor="Hiredate">Hiredate (Year, month, day)</label>
                     <input type="text" name="Hiredate" required onClick={ClearData}/>
 
-                    <button>Create</button>
+                    <label htmlFor="Salary">Salary</label>
+                    <input type="text" name="Salary" required onClick={ClearData}/>
+
+                    <button>Edit</button>
                 </form>
             )
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import backend from "../Links.json"
 
-export default class CreateOrder extends React.Component {
+export default class CreatePayment extends React.Component {
 
     componentDidMount() {
         const form = document.querySelector('form');
@@ -10,15 +10,14 @@ export default class CreateOrder extends React.Component {
             e.preventDefault();
 
             // Get data
-            let data = form.itemid.value.trim();
-            const itemid = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            const store = form.store.value;
-            const user = sessionStorage.user
+            let name = form.name.value;
+            const amount = form.amount.value;
+            const date = form.date.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addorder`, {
+                const res = await fetch(`${backend.backend}/addpayment`, {
                     method: "POST",
-                    body: JSON.stringify({ itemid, store, user}),
+                    body: JSON.stringify({ name, amount, date}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
@@ -40,12 +39,15 @@ export default class CreateOrder extends React.Component {
         return (
             <form onClick={ClearData}>
                 <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
-                <h2>Create order</h2>
-                <label htmlFor="itemid">Item Id</label>
-                <input type="text" name="itemid" required/>
+                <h2>Create payment</h2>
+                <label htmlFor="name">Name</label>
+                <input type="text" name="name" required onClick={ClearData}/>
 
-                <label htmlFor="store">Store</label>
-                <input type="text" name="store" required/>
+                <label htmlFor="amount">Amount</label>
+                <input type="text" name="amount" required onClick={ClearData}/>
+
+                <label htmlFor="date">Date</label>
+                <input type="text" name="date" required onClick={ClearData}/>
 
                 <button>Create</button>
             </form>

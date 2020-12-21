@@ -1,21 +1,36 @@
 import React from 'react'
 
-export default class Payments extends React.Component {
+// Functions
+import DoneRender from './DoneRender'
+import UnDoneRender from "./UnDoneRender";
+
+// Css
+import "../Css/Notes.css"
+
+export default class Payments extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            Data: 0,
+            Done: false,
+            Create: false
         }
+        this._onButtonClick = this._onButtonClick.bind(this);
+    }
+
+    _onButtonClick() {
+        this.setState({
+            Done: !this.state.Done,
+        });
     }
 
     render() {
         return (
-            <div className="box5">
-                <ul>
-                    <li>Opłaty za sklepy</li>
-                    <li>Statystyki zysków z towaru</li>
-                    <li>Dodawanie opłat</li>
-                    <li>Edycja opłat</li>
-                    <li>Możliwość wystawiania faktur za opłaty</li>
+            <div className="container">
+                <h1>General orders</h1>
+                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Finished' : 'Not finished'}</button>
+                <ul className="orders">
+                    {this.state.Done ? <DoneRender /> : <UnDoneRender />}
                 </ul>
             </div>
         )
