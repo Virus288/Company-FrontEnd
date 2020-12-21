@@ -3,7 +3,6 @@ import Routers from "./Router";
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 // Css
-import "./Css/Home.css"
 import "./Css/SideBar.css"
 import "./Css/Login.css"
 
@@ -13,7 +12,7 @@ export default class App extends React.Component{
         return (
             <Router>
                 <div className="App">
-                    {SideBar()}
+                    <LoggedIn />
                     <div className="content">
                         <Routers />
                     </div>
@@ -24,78 +23,102 @@ export default class App extends React.Component{
 
 }
 
-const SideBar = () => {
-    return (
-        <div className="sidebar">
-            <Home />
-        </div>
-
-    )
-}
-
 class LoggedIn extends React.Component {
 
     render()
     {
         const markUp = (e) => {
             let toogled = document.querySelector(".chosen");
-            if(toogled){
-                toogled.classList.toggle("chosen");
+            const menu = document.querySelectorAll(".menu-icon");
+            const menutoggled = document.querySelectorAll(".menu-icon-toggled");
+            const navbar = document.querySelector(".navbar");
+            const navbartoggled = document.querySelector(".navbar-toggled");
+
+            if(e.target.nodeName !== "DIV"){
+                if(toogled){
+                    toogled.classList.toggle("chosen");
+                }
+                e.target.parentElement.classList.toggle("chosen")
+            } else {
+                if(toogled){
+                    toogled.classList.toggle("chosen");
+                }
+                e.target.classList.toggle("chosen");
             }
-            e.target.classList.toggle("chosen");
+
+            if(e.target.innerHTML === "More"){
+                if(navbar){
+                    navbar.classList.toggle("navbar-toggled");
+                    navbar.classList.toggle("navbar");
+                } else{
+                    navbartoggled.classList.toggle("navbar");
+                    navbartoggled.classList.toggle("navbar-toggled");
+                }
+                if(menu.length > 0){
+                    menu.forEach(div => {
+                        div.classList.toggle("menu-icon");
+                        div.classList.toggle("menu-icon-toggled");
+                    })
+                } else {
+                    menutoggled.forEach(div => {
+                        div.classList.toggle("menu-icon");
+                        div.classList.toggle("menu-icon-toggled");
+                    })
+                }
+            }
         }
 
         return (
-            <div>
-                <h1 style={{color: "green"}}>Done</h1>
+            <div className="navbar">
                 <Link to="/orders" onClick={markUp}>
-                    <span>Orders</span>
+                    <div className="navlink"><i className="icon-newspaper"> </i></div>
                 </Link>
                 <Link to="/createorder" onClick={markUp}>
-                    <span>Create order</span>
+                    <div className="navlink">Orders</div>
                 </Link>
                 <Link to="/stock" onClick={markUp}>
-                    <span>Warehouse</span>
+                    <div className="navlink"><i className="icon-warehouse"> </i></div>
                 </Link>
                 <Link to="/stores" onClick={markUp}>
-                    <span>Stores</span>
+                    <div className="navlink"><i className="icon-building"></i></div>
                 </Link>
+                <div className="navlink more" onClick={markUp}>More</div>
                 <Link to="/employyes" onClick={markUp}>
-                    <span>Employees</span>
+                    <div><i className="icon-adult menu-icon"> </i></div>
+                </Link>
+                <Link to="/createinvoice" onClick={markUp}>
+                    <div><i className="icon-newspaper-1 menu-icon"></i></div>
                 </Link>
                 <Link to="/payments" onClick={markUp}>
-                    <span>Payments</span>
+                    <div><i className="icon-credit-card menu-icon"></i></div>
                 </Link>
                 <Link to="/createpayment" onClick={markUp}>
-                    <span>Create payment</span>
-                </Link>
-                <Link to="/logout" onClick={markUp}>
-                    <span style={{color: "blue"}}>Logout</span>
-                </Link>
-                <h1 style={{color: "red"}}>Todo</h1>
-                <Link to="/createinvoice" onClick={markUp}>
-                    <span>Create invoice</span>
+                    <div><i className="menu-icon">Create payment</i></div>
                 </Link>
                 <Link to="/simulation" onClick={markUp}>
-                    <span>Simulation</span>
+                    <div><i className="menu-icon">Simulation</i></div>
                 </Link>
                 <Link to="/look" onClick={markUp}>
-                    <span>App seems boring? Change its look!</span>
+                    <div><i className="menu-icon">Edit look</i></div>
+                </Link>
+                <Link to="/logout" onClick={markUp}>
+                    <div><i className="icon-logout menu-icon" style={{color: "blue"}}></i></div>
                 </Link>
             </div>
         )
     }
 }
 
-const Home = () => {
-  return (
-      <div className="Main">
-          <LoggedIn />
-      </div>
-  )
-}
-
 const MainMenu = () => {
+    let nav = document.querySelector(".navbar")
+    let content = document.querySelector(".content")
+    let nav2 = document.querySelector(".NotLoggedNav")
+
+    if(nav2){
+        nav.classList.toggle("NotLoggedNav")
+        content.classList.toggle("content0")
+    }
+
     return (
         <div>
             <h1>Welcome home</h1><br/>
@@ -105,6 +128,5 @@ const MainMenu = () => {
 }
 
 export {
-    Home,
     MainMenu
 }

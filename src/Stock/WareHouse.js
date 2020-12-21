@@ -1,5 +1,4 @@
 import React from 'react';
-import "../Css/Stock.css"
 import backend from "../Links.json"
 
 export default class WareHouse extends React.Component{

@@ -1,5 +1,4 @@
 import React from "react";
-import "../Css/Stores.css"
 import { withRouter } from "react-router-dom";
 import backend from "../Links.json"
 

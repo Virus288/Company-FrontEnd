@@ -16,7 +16,8 @@ const RequireAuth = async () => {
 }
 
 const CheckIfAuth = () => {
-    return !!sessionStorage.jwt;
+        return !!sessionStorage.jwt;
+
 }
 
 export {

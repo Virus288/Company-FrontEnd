@@ -4,9 +4,6 @@ import React from 'react'
 import DoneRender from './DoneRender'
 import UnDoneRender from "./UnDoneRender";
 
-// Css
-import "../Css/Notes.css"
-
 export default class Orders extends React.Component{
     constructor(props) {
         super(props);

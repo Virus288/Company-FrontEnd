@@ -5,6 +5,15 @@ import backend from "../Links.json"
 class Register extends React.Component {
 
     componentDidMount() {
+        let nav = document.querySelector(".navbar")
+        let content = document.querySelector(".content")
+        let nav2 = document.querySelector(".NotLoggedNav")
+
+        if(!nav2){
+            nav.classList.toggle("NotLoggedNav")
+            content.classList.toggle("content0")
+        }
+
         const form = document.querySelector('form');
         const emailError = document.querySelector('.email.error')
         const passwordError = document.querySelector('.password.error')

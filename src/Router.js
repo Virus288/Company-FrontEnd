@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Functions
 import {MainMenu} from './App'
-import Test from './home.js'
 import { CheckIfAuth } from './Account/Auth.js'
 import Register from "./Account/Register";
 import Login from "./Account/Login";
@@ -33,7 +32,6 @@ import CreateInvoice from "./Payments/CreateInvoice";
 function Routers() {
     return (
         <Switch>
-            <Route path="/test" exact component={Test}/>
             <Route exact path="/" render={() => (
                 CheckIfAuth() ? (
                     <MainMenu />

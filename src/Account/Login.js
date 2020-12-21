@@ -5,6 +5,15 @@ import backend from "../Links.json"
 class Login extends React.Component {
 
     componentDidMount() {
+        let nav = document.querySelector(".navbar")
+        let content = document.querySelector(".content")
+        let nav2 = document.querySelector(".NotLoggedNav")
+
+        if(!nav2){
+            nav.classList.toggle("NotLoggedNav")
+            content.classList.toggle("content0")
+        }
+
         const form = document.querySelector('form');
         const emailError = document.querySelector('.email.error')
         const passwordError = document.querySelector('.password.error')
@@ -54,13 +63,13 @@ class Login extends React.Component {
                     <div className="input">
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" required />
-                        <div className="email error"></div>
+                        <div className="email error"> </div>
                     </div>
 
                     <div className="input">
                         <label htmlFor="email">Password</label>
                         <input type="password" name="password" required />
-                        <div className="password error"></div>
+                        <div className="password error"> </div>
                     </div>
 
                     <button>Login</button>
