@@ -11,7 +11,7 @@ export default class UnDoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/orders?done=true`)
+        fetch(`${backend.backend}/getData?orders=1`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -37,9 +37,9 @@ export default class UnDoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch(`${backend.backend}/orders`, {
+                    const res = await fetch(`${backend.backend}/UpdateDone`, {
                         method: "POST",
-                        body: JSON.stringify({ Done: false, id: e.target.parentElement.id}),
+                        body: JSON.stringify({Category: "orders", IsDone: false, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}
                     });
                     const data = await res.json();
@@ -54,14 +54,14 @@ export default class UnDoneRender extends React.Component {
         const RenderData = this.state.Data.map(id => (
             <li style={{background: "red"}} key={id.id} id={id.id} className="list-group-item d-flex justify-content-between align-items-center">
                 <span>{id.ItemId}</span>
-                <input onChange={MarkOrder} type="checkbox" className="checkbox" />
+                <input onChange={MarkOrder} type="checkbox" className="checkbox"/>
             </li>
         ))
 
         return (
-            <div className="orders">
+            <ul className="orders">
                 {RenderData}
-            </div>
+            </ul>
         );
     }
 }

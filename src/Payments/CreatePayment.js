@@ -15,9 +15,9 @@ export default class CreatePayment extends React.Component {
             const date = form.date.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addpayment`, {
+                const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
-                    body: JSON.stringify({ name, amount, date}),
+                    body: JSON.stringify({Category: "addpayment", name, amount, date}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();

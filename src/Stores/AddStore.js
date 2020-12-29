@@ -16,9 +16,9 @@ export default class AddStore extends React.Component {
             const Employees = form.Employees.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addstore`, {
+                const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
-                    body: JSON.stringify({ City, Street, BuildingNumber, Employees }),
+                    body: JSON.stringify({Category: "addstore", City, Street, BuildingNumber, Employees }),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();

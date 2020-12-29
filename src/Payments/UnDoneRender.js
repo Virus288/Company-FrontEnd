@@ -11,7 +11,7 @@ export default class UnDoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getpayments?done=true`)
+        fetch(`${backend.backend}/getData?getpayments=1`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -37,9 +37,9 @@ export default class UnDoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch(`${backend.backend}/updatepayment`, {
+                    const res = await fetch(`${backend.backend}/UpdateDone`, {
                         method: "POST",
-                        body: JSON.stringify({ Done: false, id: e.target.parentElement.id}),
+                        body: JSON.stringify({Category: "payments", IsDone: false, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}
                     });
                     const data = await res.json();

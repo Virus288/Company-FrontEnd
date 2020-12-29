@@ -11,7 +11,7 @@ export default class WareHouse extends React.Component{
     }
 
     FetchData() {
-        fetch(`${backend.backend}/stock`)
+        fetch(`${backend.backend}/getData?stock=all`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({

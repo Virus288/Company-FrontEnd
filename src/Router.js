@@ -28,6 +28,7 @@ import Stores from "./Stores/Stores";
 import AddStore from "./Stores/AddStore";
 import CreatePayment from "./Payments/CreatePayment"
 import CreateInvoice from "./Payments/CreateInvoice";
+import FetchData from "./FetchData/FetchData";
 
 function Routers() {
     return (
@@ -196,6 +197,13 @@ function Routers() {
             <Route path="/logout" exact render={() => {
                 return (Logout())
             }} />
+            <Route exact path="/look" render={() => (
+                CheckIfAuth() ? (
+                    <FetchData Predata={"Banana"}/>
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
         </Switch>
     );
 }

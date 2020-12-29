@@ -15,9 +15,9 @@ export default class AddStock extends React.Component {
             const stock = form.stock.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addstock`, {
+                const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
-                    body: JSON.stringify({ itemid, stock}),
+                    body: JSON.stringify({Category: "addstock", itemid, stock }),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
@@ -47,7 +47,7 @@ export default class AddStock extends React.Component {
         return (
             <form>
                 <h1 className="data" style={{fontsize: "large"}}> </h1>
-                <h2>Create order</h2>
+                <h2>Add new item to stock</h2>
                 <label htmlFor="itemid">Item Id</label>
                 <input type="text" name="itemid" required onClick={ClearData}/>
 

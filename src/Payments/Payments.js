@@ -24,7 +24,7 @@ export default class Payments extends React.Component{
     render() {
         return (
             <div className="container">
-                <h1>General orders</h1>
+                <h1>Payments</h1>
                 <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Finished' : 'Not finished'}</button>
                 <ul className="orders">
                     {this.state.Done ? <DoneRender /> : <UnDoneRender />}

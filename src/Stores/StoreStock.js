@@ -14,7 +14,7 @@ class StoreStock extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/stores?store=${this.props.match.params.store}`)
+        fetch(`${backend.backend}/getData?store=${this.props.match.params.store}`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({

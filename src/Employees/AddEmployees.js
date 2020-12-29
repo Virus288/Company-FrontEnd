@@ -19,9 +19,9 @@ export default class AddEmployees extends React.Component {
             const Salary = form.Salary.value;
 
             try {
-                const res = await fetch(`${backend.backend}/addemployyes`, {
+                const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
-                    body: JSON.stringify({ Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
+                    body: JSON.stringify({Category: "addemployyes", Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();

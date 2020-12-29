@@ -3,12 +3,14 @@ import "../Css/Employye.css"
 import {Link} from "react-router-dom";
 import backend from "../Links.json";
 
-export default class GetEmployyes extends React.Component {
+export default class FetchData extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            Predata: [],
             Data: [],
-            Errors: 0
+            Errors: 0,
+            Done: false
         }
     }
 
@@ -46,13 +48,13 @@ export default class GetEmployyes extends React.Component {
                 <li>Hiredate: {id.Hiredate}</li>
                 <li>Salary: {id.Salary} PLN</li>
                 <Link to={EmployeeLink(id.id)}><li>Edit employee</li></Link>
+                <li>{}</li>
             </ul>
         ))
 
-        return (
-            <div className="employees">
-                {RenderData}
-            </div>
-        );
+        return this.state.Done ?
+            <RenderData /> : (
+                <span>Fetching data</span>
+            );
     }
 }

@@ -4,6 +4,9 @@ import React from 'react'
 import DoneRender from './DoneRender'
 import UnDoneRender from "./UnDoneRender";
 
+// Css
+import "../Css/Orders.css"
+
 export default class Orders extends React.Component{
     constructor(props) {
         super(props);
@@ -26,9 +29,7 @@ export default class Orders extends React.Component{
             <div className="container">
                 <h1>General orders</h1>
                 <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Finished' : 'Not finished'}</button>
-                <ul className="orders">
-                    {this.state.Done ? <DoneRender /> : <UnDoneRender />}
-                </ul>
+                {this.state.Done ? <DoneRender /> : <UnDoneRender />}
             </div>
         )
     }

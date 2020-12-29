@@ -12,7 +12,7 @@ export default class DoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/orders?done=false`)
+        fetch(`${backend.backend}/getData?orders=0`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -39,9 +39,9 @@ export default class DoneRender extends React.Component {
         const MarkOrder = async (e) => {
             if (e.target.checked) {
                 try {
-                    const res = await fetch(`${backend.backend}/orders`, {
+                    const res = await fetch(`${backend.backend}/UpdateDone`, {
                         method: "POST",
-                        body: JSON.stringify({ Done: true, id: e.target.parentElement.id}),
+                        body: JSON.stringify({Category: "orders", IsDone: true, id: e.target.parentElement.id}),
                         headers: {'Content-Type': 'application/json'}
                     });
                     const data = await res.json();
@@ -61,9 +61,9 @@ export default class DoneRender extends React.Component {
         ))
 
         return (
-            <div className="orders">
+            <ul className="orders">
                 {RenderData}
-            </div>
+            </ul>
         );
     }
 }

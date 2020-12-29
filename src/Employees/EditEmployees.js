@@ -36,7 +36,7 @@ class EditEmployees extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/employyes?employee=${this.props.match.params.employee}`)
+        fetch(`${backend.backend}/getData?employees=${this.props.match.params.employee}`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -76,9 +76,9 @@ class EditEmployees extends React.Component {
             const Salary = form.Salary.value
 
             try {
-                const res = await fetch(`${backend.backend}/editemployyes`, {
+                const res = await fetch(`${backend.backend}/updateData`, {
                     method: "POST",
-                    body: JSON.stringify({ id, Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
+                    body: JSON.stringify({Category: "editemployyes", id, Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();

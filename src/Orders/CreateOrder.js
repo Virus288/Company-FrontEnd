@@ -16,9 +16,9 @@ export default class CreateOrder extends React.Component {
             const user = sessionStorage.user
 
             try {
-                const res = await fetch(`${backend.backend}/addorder`, {
+                const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
-                    body: JSON.stringify({ itemid, store, user}),
+                    body: JSON.stringify({Category: "addorder", itemid, store, user}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
