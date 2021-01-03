@@ -13,13 +13,3 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-
-.stock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background: ghostwhite;
-    height: 400px;
-    margin: 2%;
-}

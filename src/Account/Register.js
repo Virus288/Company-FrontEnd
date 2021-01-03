@@ -11,7 +11,7 @@ class Register extends React.Component {
 
         if(!nav2){
             nav.classList.toggle("NotLoggedNav")
-            content.classList.toggle("content0")
+            content.classList.toggle("contentNotLoggedIn")
         }
 
         const form = document.querySelector('form');
@@ -63,20 +63,20 @@ class Register extends React.Component {
                     <h2>Sign up</h2>
 
                     <div className="input">
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Name</label><br/>
                         <input type="text" name="name" required />
                     </div>
 
                     <div className="input">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Email</label><br/>
                         <input type="email" name="email" required />
-                        <div className="email error"></div>
+                        <div className="email error"> </div>
                     </div>
 
                     <div className="input">
-                        <label htmlFor="email">Password</label>
+                        <label htmlFor="email">Password</label><br/>
                         <input type="password" name="password" required />
-                        <div className="password error"></div>
+                        <div className="password error"> </div>
                     </div>
 
                     <button>Sign up</button>

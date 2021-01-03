@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from "react-router-dom";
 import backend from "../Links.json"
 
-class DailyStats extends React.Component {
+class DayStats extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,10 +16,12 @@ class DailyStats extends React.Component {
         this.FetchData()
     }
 
-    FetchData(day) {
+    FetchData() {
         let link = `${backend.backend}/salesstats?store=${this.props.match.params.store}`
-        if (day){
-            link += `&day=${day}`
+        if (this.props.day){
+            link += `&day=${this.props.day}`
+        } else if(this.props.match.params.date){
+            link += `&day=${this.props.match.params.date}`
         }
         fetch(link)
             .then(res => res.json())
@@ -36,34 +38,28 @@ class DailyStats extends React.Component {
                 });
     }
 
+    RenderData = () => {
+        let data = [];
+        for(let x=0;x<Object.keys(this.state.Data.sold).length;x++){
+            data.push(<h5 key={x}>Product {Object.keys(this.state.Data.sold)[x]} was sold {this.state.Data.sold[Object.keys(this.state.Data.sold)[x]]} times</h5>)
+        }
+        return data
+    }
+
     render() {
 
-        const RenderData = () => {
-            let map;
-
-            if(this.state.Data.Message){
-                map = this.state.Data.Message
-            } else {
-                map = this.state.Data.map( id => (
-                    <div key={id} className="card" style={{height: "15rem"}}>
-                        <div className="card-body" id={id.slice(0, -5)}>
-                            <h5 className="card-title">{id.slice(0, -5)}</h5>
-                            <button style={{background: "lightgreen", marginTop: "15%"}} className="DateButton">Stats</button>
-                        </div>
-                    </div>
-                ))
-            }
-
-            return (
-                map
-            )
-        }
-
         return this.state.Done ?
-            <RenderData /> : (
+            (
+                <div className="DayData">
+                    <h2>{this.state.Data.day}</h2>
+                    <h3>{this.state.Data.profit}</h3>
+                    <this.RenderData />
+                </div>
+            ) : (
                 <h2>Fetching data</h2>
             );
     }
 }
 
-export default withRouter(DailyStats)
+export default withRouter(DayStats)
+

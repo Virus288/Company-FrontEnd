@@ -70,39 +70,20 @@ class LoggedIn extends React.Component {
 
         return (
             <div className="navbar">
-                <Link to="/orders" onClick={markUp}>
-                    <div className="navlink"><i className="icon-newspaper"> </i></div>
+                <Link to="/orders" onClick={markUp} style={{ textDecoration: 'none' }}>
+                    <div className="navlink"><i className="icon-newspaper-1 menu-icon"> </i></div>
                 </Link>
-                <Link to="/createorder" onClick={markUp}>
-                    <div className="navlink">Orders</div>
+                <Link to="/data" onClick={markUp} style={{ textDecoration: 'none' }}>
+                    <div className="navlink"><i className="icon-warehouse menu-icon"> </i></div>
                 </Link>
-                <Link to="/stock" onClick={markUp}>
-                    <div className="navlink"><i className="icon-warehouse"> </i></div>
+                <Link to="/payments" onClick={markUp} style={{ textDecoration: 'none' }}>
+                    <div className="navlink"><i className="icon-credit-card menu-icon"> </i></div>
                 </Link>
-                <Link to="/stores" onClick={markUp}>
-                    <div className="navlink"><i className="icon-building"></i></div>
+                <Link to={"/todo"} onClick={markUp} style={{ textDecoration: 'none' }}>
+                    <div className="navlink"><h3>Todo</h3></div>
                 </Link>
-                <div className="navlink more" onClick={markUp}>More</div>
-                <Link to="/employyes" onClick={markUp}>
-                    <div><i className="icon-adult menu-icon"> </i></div>
-                </Link>
-                <Link to="/createinvoice" onClick={markUp}>
-                    <div><i className="icon-newspaper-1 menu-icon"></i></div>
-                </Link>
-                <Link to="/payments" onClick={markUp}>
-                    <div><i className="icon-credit-card menu-icon"></i></div>
-                </Link>
-                <Link to="/createpayment" onClick={markUp}>
-                    <div><i className="menu-icon">Create payment</i></div>
-                </Link>
-                <Link to="/simulation" onClick={markUp}>
-                    <div><i className="menu-icon">Simulation</i></div>
-                </Link>
-                <Link to="/look" onClick={markUp}>
-                    <div><i className="menu-icon">Edit look</i></div>
-                </Link>
-                <Link to="/logout" onClick={markUp}>
-                    <div><i className="icon-logout menu-icon" style={{color: "blue"}}></i></div>
+                <Link to="/settings" onClick={markUp} style={{ textDecoration: 'none' }}>
+                    <div className="navlink"><i className="icon-cog-outline menu-icon"> </i></div>
                 </Link>
             </div>
         )
@@ -116,7 +97,7 @@ const MainMenu = () => {
 
     if(nav2){
         nav.classList.toggle("NotLoggedNav")
-        content.classList.toggle("content0")
+        content.classList.toggle("contentNotLoggedIn")
     }
 
     return (

@@ -7,7 +7,6 @@ export default class FetchData extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Predata: [],
             Data: [],
             Errors: 0,
             Done: false

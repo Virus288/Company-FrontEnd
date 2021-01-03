@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 // Functions
 import DoneRender from './DoneRender'
@@ -11,9 +12,7 @@ export default class Orders extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            Data: 0,
-            Done: false,
-            Create: false
+            Done: false
         }
         this._onButtonClick = this._onButtonClick.bind(this);
     }
@@ -27,8 +26,13 @@ export default class Orders extends React.Component{
     render() {
         return (
             <div className="container">
-                <h1>General orders</h1>
-                <button style={{background: "lightgreen"}} onClick={this._onButtonClick} className="OrderButton">{this.state.Done ? 'Finished' : 'Not finished'}</button>
+                <h2 className="header">{this.state.Done ? 'Not finished' : 'Finished'}</h2>
+                <div className="up">
+                    <button className="button" style={{background: "lightgreen"}} onClick={this._onButtonClick}>{this.state.Done ? <h5>Not done</h5> : <h5>Done</h5>}</button>
+                    <Link to="/createorder" style={{display: 'inline-block', float: "right"}}>
+                        <button className="button" style={{background: "lightgreen"}}><h5>Add new</h5></button>
+                    </Link>
+                </div>
                 {this.state.Done ? <DoneRender /> : <UnDoneRender />}
             </div>
         )

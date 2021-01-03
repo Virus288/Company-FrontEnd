@@ -1,5 +1,6 @@
 import React from 'react'
 import backend from "../Links.json"
+import {Link} from "react-router-dom";
 
 export default class CreateOrder extends React.Component {
 
@@ -33,22 +34,34 @@ export default class CreateOrder extends React.Component {
     }
 
     render() {
+
+        const GoBack = () => {
+            window.history.back()
+        }
+
         const ClearData = () => {
             document.querySelector('.data').innerHTML = '';
         }
 
         return (
-            <form onClick={ClearData}>
-                <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
-                <h2>Create order</h2>
-                <label htmlFor="itemid">Item Id</label>
-                <input type="text" name="itemid" required/>
+            <div className="container">
+                <button style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
 
-                <label htmlFor="store">Store</label>
-                <input type="text" name="store" required/>
+                <div className="form">
+                    <form onClick={ClearData} className="InnerForm">
+                        <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
+                        <h2>Create order</h2>
+                        <label htmlFor="itemid">Item Id</label>
+                        <input type="text" name="itemid" required/>
 
-                <button>Create</button>
-            </form>
+                        <label htmlFor="store">Store</label>
+                        <input type="text" name="store" required/>
+
+                        <button style={{marginLeft: "25%"}}>Create</button>
+
+                    </form>
+                </div>
+            </div>
         );
     }
 }

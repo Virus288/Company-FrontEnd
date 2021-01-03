@@ -32,32 +32,38 @@ export default class GetStores extends React.Component {
 
     render() {
         const StoreLink = (city) => {
-            return (`/storestock/${city}`)
+            return (`/stores/${city}`)
         }
 
-        const SalesStats = (city) => {
-            return (`/salesstats/${city}`)
+        const GoBack = () => {
+            window.history.back()
         }
 
         const RenderData = this.state.Data.map(id => (
-            <ul key={id.id} id={id.id}>
-                <li>City: {id.city}</li>
-                <li>Street: {id.street}</li>
-                <li>Building number: {id.buildingNumber}</li>
-                <li>Employees: {id.employees}</li>
-                <Link to={StoreLink(id.city)} style={{textDecoration: 'none'}}>
-                    <li>Stock</li>
-                </Link>
-                <Link to={SalesStats(id.city)} style={{textDecoration: 'none'}}>
-                    <li>Sales stats</li>
-                </Link>
-            </ul>
+            <div key={id.id} id={id.id} className="card" style={{height: "15rem"}}>
+                <div className="card-body">
+                    <h3 className="card-title">{id.city}</h3>
+                    <Link to={StoreLink(id.city)} style={{textDecoration: 'none'}}>
+                        <button style={{width: "150px", marginTop: "30px", border: "none"}}><h4>Store data</h4></button>
+                    </Link>
+                </div>
+            </div>
         ))
 
         return (
-            <div className="box7">
-                {RenderData}
+            <div className="container">
+                <h2 className="header">Stores</h2>
+                <div className="up">
+                    <button className="button" style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previuos menu</h4></button>
+                    <Link to="/addstore" style={{ textDecoration: 'none' }}>
+                        <button className="button" style={{background: "lightgreen", width: "150px", float: "right"}}><h4>Add store</h4></button>
+                    </Link>
+                </div>
+                <div className="OrdersList">
+                    {RenderData}
+                </div>
             </div>
         )
     }
 }
+

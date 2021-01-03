@@ -32,25 +32,37 @@ export default class CreatePayment extends React.Component {
     }
 
     render() {
+
+        const GoBack = () => {
+            window.history.back()
+        }
+
         const ClearData = () => {
             document.querySelector('.data').innerHTML = '';
         }
 
         return (
-            <form onClick={ClearData}>
-                <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
-                <h2>Create payment</h2>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" required onClick={ClearData}/>
+            <div className="container">
+                <button style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
 
-                <label htmlFor="amount">Amount</label>
-                <input type="text" name="amount" required onClick={ClearData}/>
+                <div className="form">
+                    <form onClick={ClearData} className="InnerForm">
+                        <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
+                        <h2>Create payment</h2>
+                        <label htmlFor="name">Name</label>
+                        <input type="text" name="name" required onClick={ClearData}/>
 
-                <label htmlFor="date">Date</label>
-                <input type="text" name="date" required onClick={ClearData}/>
+                        <label htmlFor="amount">Amount</label>
+                        <input type="text" name="amount" required onClick={ClearData}/>
 
-                <button>Create</button>
-            </form>
+                        <label htmlFor="date">Date</label>
+                        <input type="text" name="date" required onClick={ClearData}/>
+
+                        <button style={{marginLeft: "30%"}}>Create</button>
+
+                    </form>
+                </div>
+            </div>
         );
     }
 }

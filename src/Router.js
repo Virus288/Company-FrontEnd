@@ -10,7 +10,6 @@ import Login from "./Account/Login";
 import Logout from "./Account/Logout";
 import Orders from './Orders/Orders';
 import CreateOrder from "./Orders/CreateOrder";
-import Stock from "./Stock/Stock";
 import Employees from "./Employees/Employees";
 import GetEmployyes from './Employees/GetEmployyes';
 import GetStores from "./Stores/GetStores"
@@ -20,15 +19,16 @@ import { Look } from "./Look/Look";
 import WareHouse from "./Stock/WareHouse";
 import AddStock from "./Stock/AddStock";
 import AddEmployees from "./Employees/AddEmployees";
-import StoreStock from "./Stores/StoreStock";
+import StoreData from "./Stores/StoreData";
 import EditEmployees from "./Employees/EditEmployees"
-import SalesStats from "./Stores/SalesStats";
-import DailyStats from "./Stores/DailyStats";
-import Stores from "./Stores/Stores";
+import DayStats from "./Stores/DayStats";
 import AddStore from "./Stores/AddStore";
 import CreatePayment from "./Payments/CreatePayment"
 import CreateInvoice from "./Payments/CreateInvoice";
 import FetchData from "./FetchData/FetchData";
+import Todo from "./Todo";
+import Equipment from "./Equipment";
+import Settings from "./Settings";
 
 function Routers() {
     return (
@@ -66,13 +66,6 @@ function Routers() {
                     <Redirect to="/"/>
                 ) : (
                     <Login />
-                )
-            )}/>
-            <Route exact path="/stock" render={() => (
-                CheckIfAuth() ? (
-                    <Stock />
-                ) : (
-                    <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/warehouse" render={() => (
@@ -119,21 +112,14 @@ function Routers() {
             )}/>
             <Route exact path="/stores" render={() => (
                 CheckIfAuth() ? (
-                    <Stores />
-                ) : (
-                    <Redirect to="/login"/>
-                )
-            )}/>
-            <Route exact path="/getstores" render={() => (
-                CheckIfAuth() ? (
                     <GetStores />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
-            <Route exact path="/storestock/:store" render={() => (
+            <Route exact path="/stores/:store" render={() => (
                 CheckIfAuth() ? (
-                    <StoreStock />
+                    <StoreData />
                 ) : (
                     <Redirect to="/login"/>
                 )
@@ -173,16 +159,9 @@ function Routers() {
                     <Redirect to="/login"/>
                 )
             )}/>
-            <Route exact path="/salesstats/:store" render={() => (
+            <Route exact path="/stores/:store/:date" render={() => (
                 CheckIfAuth() ? (
-                    <SalesStats />
-                ) : (
-                    <Redirect to="/login"/>
-                )
-            )}/>
-            <Route exact path="/salesstats/:store/:date" render={() => (
-                CheckIfAuth() ? (
-                    <DailyStats />
+                    <DayStats />
                 ) : (
                     <Redirect to="/login"/>
                 )
@@ -194,12 +173,40 @@ function Routers() {
                     <Redirect to="/login"/>
                 )
             )}/>
+            <Route exact path="/todo" render={() => (
+                CheckIfAuth() ? (
+                    <Todo />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/payments" render={() => (
+                CheckIfAuth() ? (
+                    <Payments />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/data" render={() => (
+                CheckIfAuth() ? (
+                    <Equipment />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
             <Route path="/logout" exact render={() => {
                 return (Logout())
             }} />
             <Route exact path="/look" render={() => (
                 CheckIfAuth() ? (
-                    <FetchData Predata={"Banana"}/>
+                    <FetchData/>
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/settings" render={() => (
+                CheckIfAuth() ? (
+                    <Settings/>
                 ) : (
                     <Redirect to="/login"/>
                 )

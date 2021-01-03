@@ -35,33 +35,35 @@ export default class UnDoneRender extends React.Component {
 
     render() {
         const MarkOrder = async (e) => {
-            if (e.target.checked) {
-                try {
-                    const res = await fetch(`${backend.backend}/UpdateDone`, {
-                        method: "POST",
-                        body: JSON.stringify({Category: "orders", IsDone: false, id: e.target.parentElement.id}),
-                        headers: {'Content-Type': 'application/json'}
-                    });
-                    const data = await res.json();
-                    console.log(data);
-                    e.target.parentElement.remove()
-                } catch (e) {
-                    console.log(e)
-                }
+            try {
+                const res = await fetch(`${backend.backend}/UpdateDone`, {
+                    method: "POST",
+                    body: JSON.stringify({Category: "orders", IsDone: false, id: e.target.parentElement.id}),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const data = await res.json();
+                if(data){}
+                e.target.parentElement.parentElement.remove()
+            } catch (e) {
+                console.log(e)
             }
         }
 
         const RenderData = this.state.Data.map(id => (
-            <li style={{background: "red"}} key={id.id} id={id.id} className="list-group-item d-flex justify-content-between align-items-center">
-                <span>{id.ItemId}</span>
-                <input onChange={MarkOrder} type="checkbox" className="checkbox"/>
-            </li>
+            <div key={id.id} className="card" style={{height: "15rem"}}>
+                <div className="card-body" id={id.id}>
+                    <h5 className="card-title">{ id.store }</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">Ordered items:</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">{ id.ItemId }</h6>
+                    <button onClick={MarkOrder}>Done</button>
+                </div>
+            </div>
         ))
 
         return (
-            <ul className="orders">
+            <div className="OrdersList">
                 {RenderData}
-            </ul>
+            </div>
         );
     }
 }

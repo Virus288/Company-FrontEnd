@@ -8,8 +8,8 @@
   margin-left: 250px;
 }
 
-.content0 {
-  margin-left: 0px;
+.contentNotLoggedIn {
+  margin-left: 0;
 }
 
 .NotLoggedNav {
@@ -17,30 +17,16 @@
 }
 
 .navbar {
-  background: #efefef;
+  background: none;
   padding: 0;
   margin: 0;
   width: 100%;
   height: 10vh;
   position: absolute;
   bottom: 0;
-  border-right: 0.5px solid #eeeeee;
   display: grid;
   grid-template-columns:  repeat(1, 1fr);
   grid-template-rows:  repeat(6, 1fr);
-  align-items: center;
-  text-align: center;
-  transition: all 1s ease-in-out;
-  z-index: 5;
-}
-
-.navbar-toggled {
-  background: #faf5e6;
-  width: 100%;
-  height: 50vh;
-  position: absolute;
-  bottom: 0;
-  display: grid;
   align-items: center;
   text-align: center;
   transition: all 1s ease-in-out;
@@ -53,24 +39,29 @@
   justify-content: center;
   align-items: center;
   font-size: 1.7em;
+  border-left: #ff3636 0.01px solid;
+  transition: 0.5s all ease-in-out;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.navlink:hover {
+  width: 130%;
+  border-radius: 10%;
+  border-left: #ff3636 50px solid;
+  transition: 0.5s all ease-in-out;
+}
+
+.navlink i {
+  -webkit-text-fill-color: #ff3636;
+  transition: 0.5s all ease-in-out;
 }
 
 .chosen {
-  background: #c2c0c0;
+  border-radius: 10%;
+  border-left: #ff3636 30px solid;
+  transition: 0.5s all ease-in-out;
 }
-
-.menu-icon, .more {
-  display: none !important;
-}
-
-.menu-icon-toggled {
-  height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-}
-
 
 @media only screen and (min-width:801px) {
   .navbar {
@@ -85,7 +76,6 @@
     width: 100%;
   }
   .menu-icon {
-    display: inherit !important;
     height: 90px;
     display: flex;
     justify-content: center;
@@ -103,40 +93,31 @@
   }
 }
 
-@media only screen and (max-width:800px) {
-  .navbar {
-    border-top: 0.5px solid #eeeeee;
-    grid-template-columns:  repeat(5, 1fr);
-    grid-template-rows:  repeat(4, 1fr);
-  }
-  .navbar-toggled {
-    border-top: 0.5px solid #eeeeee;
-    grid-template-columns:  repeat(5, 1fr);
-    grid-template-rows:  repeat(4, 1fr);
-  }
+@media only screen and (max-width:1024px) {
   .navlink {
-    height: 90px;
+    border-left: none;
   }
-  .more {
-    display: inherit !important;
-  }
-  .content {
-    margin-left: 10px;
+  .navlink:hover {
+    border: none;
+    width: 100%;
   }
 }
 
-@media only screen and (max-width:370px) {
-  .navbar {
-    border-top: 0.5px solid #eeeeee;
-    grid-template-columns:  repeat(4, 1fr);
-    grid-template-rows:  repeat(4, 1fr);
+
+@media only screen and (max-width:800px) {
+  .container {
+    margin-bottom: 10vh;
   }
-  .navbar-toggled {
-    border-top: 0.5px solid #eeeeee;
-    grid-template-columns:  repeat(4, 1fr);
+  .navbar {
+    position: fixed;
+    background: white;
+    grid-template-columns:  repeat(5, 1fr);
     grid-template-rows:  repeat(4, 1fr);
   }
   .navlink {
     height: 90px;
+  }
+  .content {
+    margin-left: 0px;
   }
 }

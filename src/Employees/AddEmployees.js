@@ -1,5 +1,6 @@
 import React from 'react'
 import backend from "../Links.json";
+import {Link} from "react-router-dom";
 
 export default class AddEmployees extends React.Component {
 
@@ -44,37 +45,49 @@ export default class AddEmployees extends React.Component {
     }
 
     render() {
+
+        const GoBack = () => {
+            window.history.back()
+        }
+
         const ClearData = () => {
             document.querySelector('.data').innerHTML = '';
         }
 
         return (
-            <form>
-                <h1 className="data" style={{fontsize: "large"}}> </h1>
-                <h2>Add employee</h2>
-                <label htmlFor="Name">Full name</label>
-                <input type="text" name="Name" required onClick={ClearData}/>
+            <div className="container">
+                <button style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
 
-                <label htmlFor="Adress">City name</label>
-                <input type="text" name="Adress" required onClick={ClearData}/>
+                <div className="form">
+                    <form onClick={ClearData} className="InnerForm">
+                        <h1 className="data" style={{color: "green", fontsize: "large"}}> </h1>
+                        <h2>Add employee</h2>
+                        <label htmlFor="Name">Full name</label>
+                        <input type="text" name="Name" required onClick={ClearData}/>
 
-                <label htmlFor="Workplace">Workplace</label>
-                <input type="text" name="Workplace" required onClick={ClearData}/>
+                        <label htmlFor="Adress">City name</label>
+                        <input type="text" name="Adress" required onClick={ClearData}/>
 
-                <label htmlFor="Phonenumber">Phonenumber</label>
-                <input type="text" name="Phonenumber" required onClick={ClearData}/>
+                        <label htmlFor="Workplace">Workplace</label>
+                        <input type="text" name="Workplace" required onClick={ClearData}/>
 
-                <label htmlFor="Birthday">Birthday (Year, month, day)</label>
-                <input type="text" name="Birthday" required onClick={ClearData}/>
+                        <label htmlFor="Phonenumber">Phonenumber</label>
+                        <input type="text" name="Phonenumber" required onClick={ClearData}/>
 
-                <label htmlFor="Hiredate">Hiredate (Year, month, day)</label>
-                <input type="text" name="Hiredate" required onClick={ClearData}/>
+                        <label htmlFor="Birthday">Birthday (Year, month, day)</label>
+                        <input type="text" name="Birthday" required onClick={ClearData}/>
 
-                <label htmlFor="Salary">Salary</label>
-                <input type="text" name="Salary" required onClick={ClearData}/>
+                        <label htmlFor="Hiredate">Hiredate (Year, month, day)</label>
+                        <input type="text" name="Hiredate" required onClick={ClearData}/>
 
-                <button>Create</button>
-            </form>
+                        <label htmlFor="Salary">Salary</label>
+                        <input type="text" name="Salary" required onClick={ClearData}/>
+
+                        <button style={{marginLeft: "25%"}}>Create</button>
+
+                    </form>
+                </div>
+            </div>
         );
     }
 }

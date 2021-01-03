@@ -1,7 +1,74 @@
-.orders {
-    z-index: -1;
+.OrdersList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
-.orders li {
-    z-index: 1;
+.up {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.form {
+    overflow-x: scroll;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.form * {
+    align-self: center;
+    display: block;
+}
+
+.InnerForm {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px 30px 30px 80px;
+    border-bottom: red 2px solid;
+}
+
+.InnerForm input {
+    text-align: center;
+    border: 1px solid black;
+    transition: 0.5s all ease-in-out;
+}
+
+.InnerForm input:focus {
+    outline: none;
+    border-radius: 80px 80px 80px 80px;
+    border-bottom: #ff3636 3px solid;
+    transition: 0.5s all ease-in-out;
+}
+
+.InnerForm * {
+    width: 100%;
+}
+
+.InnerForm button {
+    margin-left: 35%;
+    width: 100px;
+}
+
+.card {
+    margin: 2%;
+    display: inline-block;
+    text-align: center;
+    border-radius: 30px 30px 30px 80px;
+    border-left: red 2px solid;
+}
+
+
+.header {
+    text-align: center;
+}
+
+@media only screen and (max-width:363px) {
+    .InnerForm button {
+        margin-left: 34%;
+        width: 100px;
+    }
 }

@@ -41,28 +41,39 @@ export default class AddStore extends React.Component {
     }
 
     render() {
+
+        const GoBack = () => {
+            window.history.back()
+        }
+
         const ClearData = () => {
             document.querySelector('.data').innerHTML = '';
         }
 
         return (
-            <form>
-                <h1 className="data" style={{fontsize: "large"}}> </h1>
-                <h2>Add store</h2>
-                <label htmlFor="City">City</label>
-                <input type="text" name="City" required onClick={ClearData}/>
+            <div className="container">
+                <button style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
 
-                <label htmlFor="Street">Street</label>
-                <input type="text" name="Street" required onClick={ClearData}/>
+                <div className="form">
+                    <form onClick={ClearData} className="InnerForm">
+                         <h1 className="data" style={{fontsize: "large"}}> </h1>
+                        <h2>Add store</h2>
+                        <label htmlFor="City">City</label>
+                        <input type="text" name="City" required onClick={ClearData}/>
 
-                <label htmlFor="BuildingNumber">Building number</label>
-                <input type="text" name="BuildingNumber" required onClick={ClearData}/>
+                        <label htmlFor="Street">Street</label>
+                        <input type="text" name="Street" required onClick={ClearData}/>
 
-                <label htmlFor="Employees">Employees</label>
-                <input type="text" name="Employees" required onClick={ClearData}/>
+                        <label htmlFor="BuildingNumber">Building number</label>
+                        <input type="text" name="BuildingNumber" required onClick={ClearData}/>
 
-                <button>Create</button>
-            </form>
+                        <label htmlFor="Employees">Employees</label>
+                        <input type="text" name="Employees" required onClick={ClearData}/>
+
+                        <input type="submit" />
+                    </form>
+                </div>
+            </div>
         );
     }
 }

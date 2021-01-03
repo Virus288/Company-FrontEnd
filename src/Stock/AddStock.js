@@ -40,22 +40,35 @@ export default class AddStock extends React.Component {
     }
 
     render() {
+
+        const GoBack = () => {
+            window.history.back()
+        }
+
         const ClearData = () => {
             document.querySelector('.data').innerHTML = '';
         }
 
         return (
-            <form>
-                <h1 className="data" style={{fontsize: "large"}}> </h1>
-                <h2>Add new item to stock</h2>
-                <label htmlFor="itemid">Item Id</label>
-                <input type="text" name="itemid" required onClick={ClearData}/>
+            <div className="container">
+                <button style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
 
-                <label htmlFor="stock">Amount</label>
-                <input type="text" name="stock" required onClick={ClearData}/>
+                <div className="form">
+                    <form onClick={ClearData} className="InnerForm">
+                        <h1 className="data" style={{fontsize: "large"}}> </h1>
+                        <h2>Add new item to stock</h2>
+                        <label htmlFor="itemid">Item Id</label>
+                        <input type="text" name="itemid" required onClick={ClearData}/>
 
-                <button>Create</button>
-            </form>
+                        <label htmlFor="stock">Amount</label>
+                        <input type="text" name="stock" required onClick={ClearData}/>
+
+                        <button>Create</button>
+
+                    </form>
+                </div>
+            </div>
+
         );
     }
 }

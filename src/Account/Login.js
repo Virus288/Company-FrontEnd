@@ -11,7 +11,7 @@ class Login extends React.Component {
 
         if(!nav2){
             nav.classList.toggle("NotLoggedNav")
-            content.classList.toggle("content0")
+            content.classList.toggle("contentNotLoggedIn")
         }
 
         const form = document.querySelector('form');
@@ -61,13 +61,13 @@ class Login extends React.Component {
                     <h2>Login</h2>
 
                     <div className="input">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Email</label><br/>
                         <input type="email" name="email" required />
                         <div className="email error"> </div>
                     </div>
 
                     <div className="input">
-                        <label htmlFor="email">Password</label>
+                        <label htmlFor="email">Password</label><br/>
                         <input type="password" name="password" required />
                         <div className="password error"> </div>
                     </div>

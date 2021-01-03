@@ -1,0 +1,15 @@
+.IframeInactive {
+    display: none;
+}
+
+.IframeActive {
+    display: block;
+}
+
+.InvoiceDataInactive {
+    display: none;
+}
+
+.InvoiceDataActive {
+    display: grid;
+}
