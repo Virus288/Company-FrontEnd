@@ -39,23 +39,24 @@ class DailyStats extends React.Component {
     render() {
 
         const RenderData = () => {
-            let map;
-
             if(this.state.Data.Message){
-                map = this.state.Data.Message
-            } else {
-                map = this.state.Data.map( id => (
-                    <div key={id} className="card" style={{height: "15rem"}}>
-                        <div className="card-body" id={id.slice(0, -5)}>
-                            <h5 className="card-title">{id.slice(0, -5)}</h5>
+                return ( <h2>{this.state.Data.Message}</h2> )
+            }
+            let data = []
+
+            for(let x=0;x< this.state.Data["files"].length; x++){
+                data.push(
+                    <div key={this.state.Data["files"][x]} className="card" style={{height: "15rem"}}>
+                        <div className="card-body" id={this.state.Data["files"][x].slice(0, -5)}>
+                            <h5 className="card-title">{this.state.Data["files"][x].slice(0, -5)}</h5>
+                            <h5 className="card-title">Profit: {this.state.Data["profits"][x]} PLN</h5>
                             <button style={{background: "lightgreen", marginTop: "15%"}} className="DateButton">Stats</button>
                         </div>
                     </div>
-                ))
+                )
             }
-
             return (
-                map
+                data
             )
         }
 

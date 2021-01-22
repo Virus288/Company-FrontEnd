@@ -2,7 +2,7 @@ import React from 'react'
 import {withRouter} from "react-router-dom";
 import backend from "../Links.json"
 
-class EditEmployees extends React.Component {
+class EditStock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,17 +26,11 @@ class EditEmployees extends React.Component {
 
     InsertData(){
         const form = document.querySelector('form');
-        form.Name.value = this.state.Data[0].Name;
-        form.Adress.value = this.state.Data[0].Adress;
-        form.Workplace.value = this.state.Data[0].Workplace;
-        form.Phonenumber.value = this.state.Data[0].Phonenumber
-        form.Birthday.value = this.state.Data[0].Birthday.slice(0, 10)
-        form.Hiredate.value = this.state.Data[0].Hiredate.slice(0, 10)
-        form.Salary.value = this.state.Data[0].Salary
+        form.Amount.value = this.state.Data[0].amount;
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getData?employees=${this.props.match.params.employee}`)
+        fetch(`${backend.backend}/getData?stock=${this.props.match.params.id}`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -66,19 +60,13 @@ class EditEmployees extends React.Component {
             })
 
             // Get data
-            const id = this.state.Data[0].id;
-            const Name = form.Name.value;
-            const Adress = form.Adress.value;
-            const Workplace = form.Workplace.value;
-            const Phonenumber = form.Phonenumber.value;
-            const Birthday = form.Birthday.value;
-            const Hiredate = form.Hiredate.value;
-            const Salary = form.Salary.value
+            const Number = this.state.Data[0].ItemId;
+            const Amount = form.Amount.value;
 
             try {
                 const res = await fetch(`${backend.backend}/updateData`, {
                     method: "POST",
-                    body: JSON.stringify({Category: "editemployyes", id, Name, Adress, Workplace, Phonenumber, Birthday, Hiredate, Salary}),
+                    body: JSON.stringify({Category: "editStock", Number, Amount}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
@@ -86,7 +74,6 @@ class EditEmployees extends React.Component {
                     let field = document.querySelector(".data");
                     field.style.color = "green"
                     field.innerHTML = data.message;
-                    form.reset()
                 } else {
                     this.setState({
                         Errors: 1
@@ -98,14 +85,13 @@ class EditEmployees extends React.Component {
 
                 if(this.state.Errors === 0){
                     setTimeout(() => {
-                        this.props.history.push('/employyes')
+                        this.props.history.push('/warehouse')
                     }, 2000)
                 }
             }
             catch (e) {
                 console.log(e)
             }
-
         })
     }
 
@@ -123,27 +109,12 @@ class EditEmployees extends React.Component {
                     <div className="form">
                         <form className="InnerForm">
                             <h1 className="data" style={{fontsize: "large"}}> </h1>
-                            <h2>Edit employee</h2>
-                            <label htmlFor="Name">Full name</label>
-                            <input type="text" name="Name" required onClick={ClearData}/>
+                            <h2>Edit product</h2>
+                            <label htmlFor="Number">Product number</label>
+                            <h3 className="ItemId">{this.state.Data[0].ItemId}</h3>
 
-                            <label htmlFor="Adress">City name</label>
-                            <input type="text" name="Adress" required onClick={ClearData}/>
-
-                            <label htmlFor="Workplace">Workplace</label>
-                            <input type="text" name="Workplace" required onClick={ClearData}/>
-
-                            <label htmlFor="Phonenumber">Phonenumber</label>
-                            <input type="text" name="Phonenumber" required onClick={ClearData}/>
-
-                            <label htmlFor="Birthday">Birthday (Year, month, day)</label>
-                            <input type="text" name="Birthday" required onClick={ClearData}/>
-
-                            <label htmlFor="Hiredate">Hiredate (Year, month, day)</label>
-                            <input type="text" name="Hiredate" required onClick={ClearData}/>
-
-                            <label htmlFor="Salary">Salary</label>
-                            <input type="text" name="Salary" required onClick={ClearData}/>
+                            <label htmlFor="Amount">Amount of products</label>
+                            <input type="text" name="Amount" required onClick={ClearData}/>
 
                             <button style={{marginLeft: "25%"}}>Submit</button>
 
@@ -164,4 +135,4 @@ class EditEmployees extends React.Component {
     }
 }
 
-export default withRouter(EditEmployees)
+export default withRouter(EditStock)

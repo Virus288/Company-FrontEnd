@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+body {
+  background: white;
+  transition: 1s all ease-in-out;
+}
+
 .content {
   margin-left: 250px;
 }
@@ -110,8 +115,7 @@
   }
   .navbar {
     position: fixed;
-    background: white;
-    grid-template-columns:  repeat(5, 1fr);
+    grid-template-columns:  repeat(4, 1fr);
     grid-template-rows:  repeat(4, 1fr);
   }
   .navlink {

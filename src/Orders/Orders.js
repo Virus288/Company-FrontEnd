@@ -30,7 +30,7 @@ export default class Orders extends React.Component{
                 <div className="up">
                     <button className="button" style={{background: "lightgreen"}} onClick={this._onButtonClick}>{this.state.Done ? <h5>Not done</h5> : <h5>Done</h5>}</button>
                     <Link to="/createorder" style={{display: 'inline-block', float: "right"}}>
-                        <button className="button" style={{background: "lightgreen"}}><h5>Add new</h5></button>
+                        <button className="button" style={{background: "lightgreen"}}><h4>Add new</h4></button>
                     </Link>
                 </div>
                 {this.state.Done ? <DoneRender /> : <UnDoneRender />}

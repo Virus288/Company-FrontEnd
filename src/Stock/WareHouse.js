@@ -42,6 +42,9 @@ export default class WareHouse extends React.Component{
                 <div className="card-body" id={id.id}>
                     <h5 className="card-subtitle mb-2">You have: {id.amount} </h5>
                     <h5 className="card-subtitle mb-2"> of { id.ItemId }</h5>
+                    <Link to={/editstock/ + id.ItemId} style={{ textDecoration: 'none' }}>
+                        <button style={{background: "lightgreen"}}><h2>Edit</h2></button>
+                    </Link>
                 </div>
             </div>
         ))

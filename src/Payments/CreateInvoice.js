@@ -30,7 +30,6 @@ export default class CreateInvoice extends React.Component {
                     <img src=${data.image} alt="Card image cap" height="50px" width="100px">
                     <div class="card-body">
                         <h5 class="card-title">Image</h5>
-                        <h6 class="card-subtitle mb-2 text-muted name">${data.name}</h6>
                     </div>
                 </div>`
         } else if(data.type === "product"){
@@ -94,10 +93,6 @@ export default class CreateInvoice extends React.Component {
     render(){
         const Pdf = new CreatePdf("Capri");
 
-        const reload = () => {
-            window.location.reload();
-        }
-
         const GoBack = () => {
             window.history.back()
         }
@@ -139,17 +134,17 @@ export default class CreateInvoice extends React.Component {
 
                     <form className="InnerForm product">
                         <h2>Add product</h2>
-                        <label htmlFor="ProductName">Name</label>
-                        <input type="text" name="ProductName" id="ProductName"/>
+                        <label htmlFor="Item2Data">Name</label>
+                        <input type="text" name="Item2Data" id="Item2Data"/>
 
-                        <label htmlFor="ProductPrice">Price</label>
-                        <input type="text" name="ProductPrice" id="ProductPrice"/>
+                        <label htmlFor="Item4Data">Price</label>
+                        <input type="text" name="Item4Data" id="Item4Data"/>
 
-                        <label htmlFor="ProductAmount">Amount</label>
-                        <input type="text" name="ProductAmount" id="ProductAmount"/>
+                        <label htmlFor="Item3Data">Amount</label>
+                        <input type="text" name="Item3Data" id="Item3Data"/>
 
-                        <label htmlFor="Vat">Vat</label>
-                        <input type="text" name="Vat" id="Vat"/>
+                        <label htmlFor="Item5Data">Vat</label>
+                        <input type="text" name="Item5Data" id="Item5Data"/>
 
                         <button style={{marginLeft: "23%"}}>Create</button>
 
@@ -158,7 +153,6 @@ export default class CreateInvoice extends React.Component {
                     <button onClick={Pdf.Submit}>Create invoice</button>
                 </div>
                 <div className="IframeInactive">
-                    <button onClick={reload}>Edit again</button>
                     <iframe title="Invoice" id="pdf" style={{width: "100%", height: "90vh"}}> </iframe>
                 </div>
             </div>

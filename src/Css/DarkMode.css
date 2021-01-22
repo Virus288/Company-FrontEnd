@@ -1,0 +1,17 @@
+.body-dark {
+    background: #858585;
+    transition: 1s all ease-in-out;
+}
+
+.body-dark .card {
+    color: white;
+    background: #b8b8b8;
+}
+.body-dark .card .card-subtitle {
+    color: rgba(227,227,227,0.93);
+}
+
+.body-dark .navbar .navlink i {
+    -webkit-text-fill-color: mintcream;
+    transition: 1s all ease-in-out;
+}

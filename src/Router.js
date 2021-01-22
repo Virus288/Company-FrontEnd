@@ -29,6 +29,7 @@ import FetchData from "./FetchData/FetchData";
 import Todo from "./Todo";
 import Equipment from "./Equipment";
 import Settings from "./Settings";
+import EditStock from "./Stock/EditStock";
 
 function Routers() {
     return (
@@ -71,6 +72,13 @@ function Routers() {
             <Route exact path="/warehouse" render={() => (
                 CheckIfAuth() ? (
                     <WareHouse />
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            )}/>
+            <Route exact path="/editstock/:id" render={() => (
+                CheckIfAuth() ? (
+                    <EditStock />
                 ) : (
                     <Redirect to="/login"/>
                 )

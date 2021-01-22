@@ -1,6 +1,5 @@
 import React from 'react'
 import backend from "../Links.json"
-import {Link} from "react-router-dom";
 
 export default class CreateOrder extends React.Component {
 

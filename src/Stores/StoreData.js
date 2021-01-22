@@ -2,6 +2,8 @@ import React from "react";
 import {withRouter} from "react-router-dom";
 import DailyStats from "./DailyStats";
 import DayStats from "./DayStats";
+import Charts from "./Chart";
+import AddDay from "./AddDay"
 
 class StoreData extends React.Component {
     constructor(props) {
@@ -22,11 +24,15 @@ class StoreData extends React.Component {
         this._onButtonClick("SalesStats");
         setTimeout(() => {
             this.ListenForDay()
-        }, 10)
+        }, 500)
     }
 
     RenderGeneral = () => {
         this._onButtonClick("General")
+    }
+
+    AddDay = () => {
+        this._onButtonClick("AddDay")
     }
 
     ListenForDay = () => {
@@ -51,8 +57,10 @@ class StoreData extends React.Component {
                 return <DailyStats />
             } else if(this.state.Done.length === 10){
                 return <DayStats day={this.state.Done}/>
-            } else {
-                 return "General"
+            } else if(this.state.Done === "General"){
+                 return <Charts />
+             } else {
+                 return <AddDay />
              }
         }
 
@@ -62,6 +70,7 @@ class StoreData extends React.Component {
                 <div className="up">
                     <button className="button" style={{background: "lightgreen", width: "190px"}} onClick={GoBack}><h4>Previous menu</h4></button>
                     <button className="button" style={{background: "lightgreen", width: "150px"}} onClick={this.RenderDaily}><h3>SalesStats</h3></button>
+                    <button className="button" style={{background: "lightgreen", width: "150px"}} onClick={this.AddDay}><h3>Add day</h3></button>
                     <button className="button" style={{background: "lightgreen", width: "150px"}} onClick={this.RenderGeneral}><h3>General</h3></button>
                 </div>
                 <div className="OrdersList">

@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Link} from 'react-router-dom';
 // Css
 import "./Css/SideBar.css"
 import "./Css/Login.css"
+import "./Css/DarkMode.css"
 
 export default class App extends React.Component{
 
@@ -79,9 +80,9 @@ class LoggedIn extends React.Component {
                 <Link to="/payments" onClick={markUp} style={{ textDecoration: 'none' }}>
                     <div className="navlink"><i className="icon-credit-card menu-icon"> </i></div>
                 </Link>
-                <Link to={"/todo"} onClick={markUp} style={{ textDecoration: 'none' }}>
-                    <div className="navlink"><h3>Todo</h3></div>
-                </Link>
+                {/*<Link to={"/todo"} onClick={markUp} style={{ textDecoration: 'none' }}>*/}
+                {/*    <div className="navlink"><h3>Todo</h3></div>*/}
+                {/*</Link>*/}
                 <Link to="/settings" onClick={markUp} style={{ textDecoration: 'none' }}>
                     <div className="navlink"><i className="icon-cog-outline menu-icon"> </i></div>
                 </Link>
