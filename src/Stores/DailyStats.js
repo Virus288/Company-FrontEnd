@@ -21,7 +21,10 @@ class DailyStats extends React.Component {
         if (day){
             link += `&day=${day}`
         }
-        fetch(link)
+        fetch(link, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

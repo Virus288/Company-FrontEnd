@@ -18,7 +18,8 @@ export default class AddStock extends React.Component {
                 const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
                     body: JSON.stringify({Category: "addstock", itemid, stock }),
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: { 'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
                 if(data.type === "success"){

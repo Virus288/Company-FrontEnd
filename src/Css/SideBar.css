@@ -22,7 +22,7 @@ body {
 }
 
 .navbar {
-  background: none;
+  background: #2f80ed;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -57,7 +57,7 @@ body {
   transition: 0.5s all ease-in-out;
 }
 
-.navlink i {
+.navlink h5, i {
   -webkit-text-fill-color: #ff3636;
   transition: 0.5s all ease-in-out;
 }

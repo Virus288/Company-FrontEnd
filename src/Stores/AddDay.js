@@ -27,7 +27,8 @@ class AddDay extends React.Component {
                 const res = await fetch(`${backend.backend}/adday`, {
                     method: "POST",
                     body: JSON.stringify({City: this.props.match.params.store, Category: "AdDay", data: this.state.Data, day: this.state.Day, profit: this.state.Profit}),
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: { 'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
                 if(data.type === "success"){

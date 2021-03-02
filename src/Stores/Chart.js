@@ -22,8 +22,10 @@ class Charts extends React.Component{
     }
 
     FetchData() {
-        let link = `${backend.backend}/salesstats?store=${this.props.match.params.store}`
-        fetch(link)
+        fetch(`${backend.backend}/salesstats?store=${this.props.match.params.store}`, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

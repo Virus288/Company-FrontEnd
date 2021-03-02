@@ -19,7 +19,8 @@ export default class CreateOrder extends React.Component {
                 const res = await fetch(`${backend.backend}/addData`, {
                     method: "POST",
                     body: JSON.stringify({Category: "addorder", itemid, store, user}),
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: { 'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
                 document.querySelector(".data").innerHTML = data.message;

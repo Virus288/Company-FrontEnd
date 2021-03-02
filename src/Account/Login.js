@@ -33,17 +33,22 @@ class Login extends React.Component {
                 const res = await fetch(`${backend.backend}/login`, {
                     method: "POST",
                     body: JSON.stringify({ email, password}),
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: { 'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
-                if(data.errors){
+                console.log(data)
+                if(data.data){
+                    if(data.data.email || data.data.password){
+                        emailError.textContent = data.data.email;
+                        passwordError.textContent = data.data.password;
+                    }
+                } else if(data.errors){
                     emailError.textContent = data.errors.email;
                     passwordError.textContent = data.errors.password;
-                }
-                if(data["user"] && data['user'] !== undefined){
-                    sessionStorage.setItem('jwt', data.token);
-                    sessionStorage.setItem('user', data.user);
-                    this.props.history.push('/');
+                    console.log(passwordError.textContent)
+                } else if(data.Type === 1){
+                    this.props.history.push('/')
                 }
             }
             catch (e) {

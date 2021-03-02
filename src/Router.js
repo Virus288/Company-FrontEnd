@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Functions
 import {MainMenu} from './App'
-import { CheckIfAuth } from './Account/Auth.js'
+import { RequireAuth } from './Account/Auth.js'
 import Register from "./Account/Register";
 import Login from "./Account/Login";
 import Logout from "./Account/Logout";
@@ -35,168 +35,168 @@ function Routers() {
     return (
         <Switch>
             <Route exact path="/" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth().then(data => {return data}) ? (
                     <MainMenu />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/orders" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Orders />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/createorder" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <CreateOrder />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/register" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Redirect to="/"/>
                 ) : (
                     <Register />
                 )
             )}/>
             <Route exact path="/login" render={() => (
-                CheckIfAuth() ? (
-                    <Redirect to="/"/>
-                ) : (
+                RequireAuth() ? (
                     <Login />
+                ) : (
+                    <Redirect to="/"/>
                 )
             )}/>
             <Route exact path="/warehouse" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <WareHouse />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/editstock/:id" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <EditStock />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/addstock" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <AddStock />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/employyes" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Employees />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/getemployyes" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <GetEmployyes />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/addemployees" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <AddEmployees />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/editemployees/:employee" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <EditEmployees />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/stores" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <GetStores />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/stores/:store" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <StoreData />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/addstore" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <AddStore />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/payments" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Payments />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/createpayment" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <CreatePayment />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/createinvoice" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <CreateInvoice />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/simulation" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Simulation />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/stores/:store/:date" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <DayStats />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/look" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Look />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/todo" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Todo />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/payments" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Payments />
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/data" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Equipment />
                 ) : (
                     <Redirect to="/login"/>
@@ -206,14 +206,14 @@ function Routers() {
                 return (Logout())
             }} />
             <Route exact path="/look" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <FetchData/>
                 ) : (
                     <Redirect to="/login"/>
                 )
             )}/>
             <Route exact path="/settings" render={() => (
-                CheckIfAuth() ? (
+                RequireAuth() ? (
                     <Settings/>
                 ) : (
                     <Redirect to="/login"/>

@@ -12,7 +12,10 @@ export default class GetStores extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getData?stores=all`)
+        fetch(`${backend.backend}/getData?stores=all`, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

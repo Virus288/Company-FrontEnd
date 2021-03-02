@@ -23,7 +23,10 @@ class DayStats extends React.Component {
         } else if(this.props.match.params.date){
             link += `&day=${this.props.match.params.date}`
         }
-        fetch(link)
+        fetch(link, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

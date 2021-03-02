@@ -67,7 +67,8 @@ class EditStock extends React.Component {
                 const res = await fetch(`${backend.backend}/updateData`, {
                     method: "POST",
                     body: JSON.stringify({Category: "editStock", Number, Amount}),
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: { 'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
                 if(data.type === "success"){

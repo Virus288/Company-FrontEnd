@@ -12,7 +12,10 @@ export default class DoneRender extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getData?orders=0`)
+        fetch(`${backend.backend}/getData?orders=0`, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -41,7 +44,8 @@ export default class DoneRender extends React.Component {
                 const res = await fetch(`${backend.backend}/UpdateDone`, {
                     method: "POST",
                     body: JSON.stringify({Category: "orders", IsDone: true, id: e.target.parentElement.id}),
-                    headers: {'Content-Type': 'application/json'}
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: "include"
                 });
                 const data = await res.json();
                 if(data){}

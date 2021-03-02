@@ -13,7 +13,10 @@ export default class WareHouse extends React.Component{
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getData?stock=all`)
+        fetch(`${backend.backend}/getData?stock=all`, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

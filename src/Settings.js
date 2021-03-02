@@ -7,7 +7,7 @@ export default class Settings extends React.Component {
         return (
             <div className="form">
                 <div className="Settings">
-                    <button style={{background: "lightgreen", width: "200px"}} onClick={DarkMode}><h3>Dark Mode</h3></button>
+                        <button style={{background: "lightgreen", width: "200px"}} onClick={DarkMode}><h3>Dark Mode</h3></button>
                     <Link to="/logout" style={{ textDecoration: 'none'}}>
                         <button style={{background: "lightgreen", width: "200px"}}><h2>Logout</h2></button>
                     </Link>

@@ -14,7 +14,10 @@ export default class FetchData extends React.Component {
     }
 
     FetchData() {
-        fetch(`${backend.backend}/getData?employees=all`)
+        fetch(`${backend.backend}/getData?employees=all`, {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then((result) => {
                     this.setState({

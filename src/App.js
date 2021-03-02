@@ -72,19 +72,16 @@ class LoggedIn extends React.Component {
         return (
             <div className="navbar">
                 <Link to="/orders" onClick={markUp} style={{ textDecoration: 'none' }}>
-                    <div className="navlink"><i className="icon-newspaper-1 menu-icon"> </i></div>
+                    <div className="navlink"><h5 className="menu-icon">Orders</h5></div>
                 </Link>
                 <Link to="/data" onClick={markUp} style={{ textDecoration: 'none' }}>
-                    <div className="navlink"><i className="icon-warehouse menu-icon"> </i></div>
+                    <div className="navlink"><i className="menu-icon">Stores</i></div>
                 </Link>
                 <Link to="/payments" onClick={markUp} style={{ textDecoration: 'none' }}>
-                    <div className="navlink"><i className="icon-credit-card menu-icon"> </i></div>
+                    <div className="navlink"><h5 className="menu-icon">Payments</h5></div>
                 </Link>
-                {/*<Link to={"/todo"} onClick={markUp} style={{ textDecoration: 'none' }}>*/}
-                {/*    <div className="navlink"><h3>Todo</h3></div>*/}
-                {/*</Link>*/}
                 <Link to="/settings" onClick={markUp} style={{ textDecoration: 'none' }}>
-                    <div className="navlink"><i className="icon-cog-outline menu-icon"> </i></div>
+                    <div className="navlink"><h5 className="menu-icon">Settings</h5></div>
                 </Link>
             </div>
         )
