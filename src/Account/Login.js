@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from "react-router-dom";
 import backend from "../Links.json"
+import { Context } from "../Contexts/Context";
 
 class Login extends React.Component {
 
@@ -14,72 +15,74 @@ class Login extends React.Component {
             content.classList.toggle("contentNotLoggedIn")
         }
 
-        const form = document.querySelector('form');
-        const emailError = document.querySelector('.email.error')
-        const passwordError = document.querySelector('.password.error')
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Reset errors
-            emailError.textContent = ' ';
-            passwordError.textContent = ' ';
-
-            // Get data
-            const email = form.email.value;
-            const password = form.password.value;
-
-            try {
-                const res = await fetch(`${backend.backend}/login`, {
-                    method: "POST",
-                    body: JSON.stringify({ email, password}),
-                    headers: { 'Content-Type': 'application/json'},
-                    credentials: "include"
-                });
-                const data = await res.json();
-                console.log(data)
-                if(data.data){
-                    if(data.data.email || data.data.password){
-                        emailError.textContent = data.data.email;
-                        passwordError.textContent = data.data.password;
-                    }
-                } else if(data.errors){
-                    emailError.textContent = data.errors.email;
-                    passwordError.textContent = data.errors.password;
-                    console.log(passwordError.textContent)
-                } else if(data.Type === 1){
-                    this.props.history.push('/')
-                }
-            }
-            catch (e) {
-                console.log(e)
-            }
-
-        })
     }
 
     render(){
         return (
-            <div className="NotLogged">
-                <form>
-                    <Link to={`/register`}><h1>Sign up</h1></Link>
-                    <h2>Login</h2>
+            <Context.Consumer>{(context) => {
 
-                    <div className="input">
-                        <label htmlFor="email">Email</label><br/>
-                        <input type="email" name="email" required />
-                        <div className="email error"> </div>
+                const login = async (e) => {
+                        e.preventDefault();
+
+                        // Reset errors
+                        const emailError = document.querySelector('.email.error')
+                        const passwordError = document.querySelector('.password.error')
+                        emailError.textContent = '';
+                        passwordError.textContent = '';
+
+                        // Get data
+                        const email = e.target.email.value;
+                        const password = e.target.password.value;
+
+                        try {
+                            const res = await fetch(`${backend.backend}/login`, {
+                                method: "POST",
+                                body: JSON.stringify({ email, password}),
+                                headers: { 'Content-Type': 'application/json'},
+                                credentials: "include"
+                            });
+                            const data = await res.json();
+                            console.log(data)
+                            if(data.username || data.password || data.email){
+                                emailError.textContent = data.email;
+                                passwordError.textContent = data.password;
+                            } else if(data.Type === 1){
+                                context.LogIn(true)
+                                console.log("Success")
+                                this.props.history.push('/');
+                            }
+                        }
+                        catch (e) {
+                            console.log(e)
+                        }
+                }
+
+                return (
+                    <div className="NotLogged">
+                        <form onSubmit={login}>
+                            <Link to={`/register`}><h1>Sign up</h1></Link>
+                            <h2>Login</h2>
+
+                            <div className="input">
+                                <label htmlFor="email">Email</label><br/>
+                                <input type="email" name="email" required />
+                                <div className="email error"> </div>
+                            </div>
+
+                            <div className="input">
+                                <label htmlFor="email">Password</label><br/>
+                                <input type="password" name="password" required />
+                                <div className="password error"> </div>
+                            </div>
+
+                            <button>Login</button>
+                        </form>
                     </div>
+                )
 
-                    <div className="input">
-                        <label htmlFor="email">Password</label><br/>
-                        <input type="password" name="password" required />
-                        <div className="password error"> </div>
-                    </div>
-
-                    <button>Login</button>
-                </form>
-            </div>
+            }
+            }
+            </ Context.Consumer>
         )
     }
 

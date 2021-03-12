@@ -7,17 +7,22 @@ import "./Css/SideBar.css"
 import "./Css/Login.css"
 import "./Css/DarkMode.css"
 
+// My modules
+import ThemeContextProvider from "./Contexts/Context";
+
 export default class App extends React.Component{
 
     render(){
         return (
             <Router>
-                <div className="App">
-                    <LoggedIn />
-                    <div className="content">
-                        <Routers />
+                <ThemeContextProvider>
+                    <div className="App">
+                        <LoggedIn />
+                        <div className="content">
+                            <Routers />
+                        </div>
                     </div>
-                </div>
+                </ThemeContextProvider>
             </Router>
         );
     }

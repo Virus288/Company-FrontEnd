@@ -17,6 +17,7 @@ class Register extends React.Component {
         const form = document.querySelector('form');
         const emailError = document.querySelector('.email.error')
         const passwordError = document.querySelector('.password.error')
+        const nameError = document.querySelector('.name.error')
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -24,23 +25,26 @@ class Register extends React.Component {
             // Reset errors
             emailError.textContent = ' ';
             passwordError.textContent = ' ';
+            nameError.textContent = ' '
 
             // Get data
-            const name = form.name.value;
-            const email = form.email.value;
-            const password = form.password.value;
+            let username = form.name.value;
+            let email = form.email.value;
+            let password = form.password.value;
+            let password2 = form.password2.value
 
             try {
-                const res = await fetch(`${backend.backend}/signup`, {
+                const res = await fetch(`${backend.backend}/register`, {
                     method: "POST",
-                    body: JSON.stringify({ name, email, password}),
+                    body: JSON.stringify({ username, email, password, password2}),
                     headers: { 'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
-                if(data.errors){
-                    emailError.textContent = data.errors.email;
-                    passwordError.textContent = data.errors.password;
-                } else if(data.success === true){
+                if(data.username || data.password || data.email){
+                    nameError.textContent = data.username;
+                    emailError.textContent = data.email;
+                    passwordError.textContent = data.password;
+                } else if(data.Type === 1){
                     console.log("Success")
                     this.props.history.push('/login');
                 } else {
@@ -65,6 +69,7 @@ class Register extends React.Component {
                     <div className="input">
                         <label htmlFor="name">Name</label><br/>
                         <input type="text" name="name" required />
+                        <div className="name error"> </div>
                     </div>
 
                     <div className="input">
@@ -74,8 +79,14 @@ class Register extends React.Component {
                     </div>
 
                     <div className="input">
-                        <label htmlFor="email">Password</label><br/>
+                        <label htmlFor="password">Password</label><br/>
                         <input type="password" name="password" required />
+                        <div className="password error"> </div>
+                    </div>
+
+                    <div className="input">
+                        <label htmlFor="password2">Repeat password</label><br/>
+                        <input type="password" name="password2" required />
                         <div className="password error"> </div>
                     </div>
 
