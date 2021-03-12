@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import { graphql } from "react-apollo";
+import backend from "../Links.json";
 import { getUsersQuery, getUserQuery } from "../queries/queries";
 
-class Employees extends React.Component {
+export default class Employees extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,22 +11,40 @@ class Employees extends React.Component {
         }
     }
 
+    Search = () => {
+        fetch(`${backend.backend}/graphql`, {
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: getUserQuery,
+                variables: {
+                    Group: this.props.Context.Group,
+                },
+            }),
+        })
+            .then((res) => res.json())
+            .then((result) => console.log(result));
+    }
+
     componentDidMount() {
         this.props.Context.CheckIfLogged()
+        this.Search()
     }
 
     displayUsers = () => {
-        let data = this.props.data
-        if(data.loading){
-            return(<div>Loading books....</div>)
-        } else {
-            console.log(this.props)
+        // let data = this.props.data
+        // if(data.loading){
+        //     return(<div>Loading books....</div>)
+        // } else {
         //     return data.Users.map(user => {
         //         return(
         //             <li key={user.id}>{user.name}</li>
         //         )
         //     })
-        }
+        // }
     }
 
     render(){
@@ -51,18 +69,3 @@ class Employees extends React.Component {
         )
     }
 }
-
-export default graphql(getUserQuery, {
-    options: (props) => {
-        console.log(props.Context.Group)
-        return {
-            variables: {
-                Group: props.Context.Group
-            }
-        }
-    }
-})(Employees)
-
-
-// TODO
-// Apollo database stuff. Apollo as tool sucks

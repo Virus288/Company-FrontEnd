@@ -9,16 +9,16 @@ const getBooksQuery = gql`
 }
 `
 
-const getUserQuery = gql`
-query ($group: String!) {
-    GroupUsers(Group: $group){
+const getUserQuery = `
+query ($Group: String!) {
+    GroupUsers(Group: $Group){
     name
     id
     email
     }
 }
 `
-const getUsersQuery = gql`
+const getUsersQuery = `
 query{
     Users{
     name
