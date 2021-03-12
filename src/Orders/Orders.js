@@ -33,7 +33,7 @@ export default class Orders extends React.Component{
                         <button className="button" style={{background: "lightgreen"}}><h4>Add new</h4></button>
                     </Link>
                 </div>
-                {this.state.Done ? <DoneRender LoggedIn={this.props.context.LogIn} /> : <UnDoneRender />}
+                {this.state.Done ? <DoneRender LoggedIn={this.props.context.LogIn} /> : <UnDoneRender LoggedIn={this.props.context.LogIn} />}
             </div>
         )
     }

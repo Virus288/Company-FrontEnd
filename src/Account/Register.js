@@ -4,7 +4,26 @@ import backend from "../Links.json"
 
 class Register extends React.Component {
 
+    FetchToken() {
+        fetch(`${backend.backend}/token`, {
+            method: "GET",
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.Type === 1){
+                    console.log("logged in")
+                    this.props.Logged.LogIn(true)
+                } else {
+                    console.log("Not logged in")
+                }
+            })
+    }
+
     componentDidMount() {
+        this.FetchToken()
+
+
         let nav = document.querySelector(".navbar")
         let content = document.querySelector(".content")
         let nav2 = document.querySelector(".NotLoggedNav")

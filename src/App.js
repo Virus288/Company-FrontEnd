@@ -1,6 +1,8 @@
 import React from "react";
 import Routers from "./Router";
 import {BrowserRouter as Router, Link} from 'react-router-dom';
+import ApolloClient from "apollo-boost"
+import { ApolloProvider } from "react-apollo"
 
 // Css
 import "./Css/SideBar.css"
@@ -8,22 +10,30 @@ import "./Css/Login.css"
 import "./Css/DarkMode.css"
 
 // My modules
-import ThemeContextProvider from "./Contexts/Context";
+import ContextProvider from "./Contexts/Context";
+
+// Setup apollo
+const client = new ApolloClient({
+    uri: "http://localhost:5000/graphql",
+    credentials: 'include'
+})
 
 export default class App extends React.Component{
 
     render(){
         return (
-            <Router>
-                <ThemeContextProvider>
-                    <div className="App">
-                        <LoggedIn />
-                        <div className="content">
-                            <Routers />
+            <ApolloProvider client={client}>
+                <Router>
+                    <ContextProvider>
+                        <div className="App">
+                            <LoggedIn />
+                            <div className="content">
+                                <Routers />
+                            </div>
                         </div>
-                    </div>
-                </ThemeContextProvider>
-            </Router>
+                    </ContextProvider>
+                </Router>
+            </ApolloProvider>
         );
     }
 

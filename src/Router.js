@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Routes
 import {MainMenu} from './App'
-import { RequireAuth } from './Account/Auth.js'
 import Register from "./Account/Register";
 import Login from "./Account/Login";
 import Logout from "./Account/Logout";
@@ -55,173 +54,175 @@ function Routers() {
                         )
                     )}/>
                     <Route exact path="/createorder" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <CreateOrder />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/register" render={() => (
-                        <Register />
-                        // RequireAuth() ? (
-                        //     <Redirect to="/"/>
-                        // ) : (
-                        //     <Register />
-                        // )
+                        context.isLogged ? (
+                            <Redirect to="/"/>
+                        ) : (
+                            <Register Context={context}/>
+                            )
                     )}/>
                     <Route exact path="/login" render={() => (
-                        <Login />
-                        // RequireAuth() ? (
-                        //     <Login />
-                        // ) : (
-                        //     <Redirect to="/"/>
-                        // )
+                        context.isLogged ? (
+                            <Redirect to="/"/>
+                        ) : (
+                            <Login Context={context}/>
+                        )
                     )}/>
                     <Route exact path="/warehouse" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <WareHouse />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/editstock/:id" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <EditStock />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/addstock" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <AddStock />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/employyes" render={() => (
-                        RequireAuth() ? (
-                            <Employees />
+                        context.isLogged ? (
+                            <Employees Context={context} />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/getemployyes" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <GetEmployyes />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/addemployees" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <AddEmployees />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/editemployees/:employee" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <EditEmployees />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/stores" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <GetStores />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/stores/:store" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <StoreData />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/addstore" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <AddStore />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/payments" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Payments />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/createpayment" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <CreatePayment />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/createinvoice" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <CreateInvoice />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/simulation" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Simulation />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/stores/:store/:date" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <DayStats />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/look" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Look />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/todo" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Todo />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/payments" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Payments />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/data" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Equipment />
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
-                    <Route path="/logout" exact render={() => {
-                        return (Logout())
-                    }} />
+                    <Route exact path="/logout" render={() => (
+                        context.isLogged ? (
+                            <Logout Context={context} />
+                        ) : (
+                            <Redirect to="/login"/>
+                        )
+                    )}/>
                     <Route exact path="/look" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <FetchData/>
                         ) : (
                             <Redirect to="/login"/>
                         )
                     )}/>
                     <Route exact path="/settings" render={() => (
-                        RequireAuth() ? (
+                        context.isLogged ? (
                             <Settings/>
                         ) : (
                             <Redirect to="/login"/>

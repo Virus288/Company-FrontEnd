@@ -11,22 +11,6 @@ export default class DoneRender extends React.Component {
         };
     }
 
-    FetchToken() {
-        fetch(`${backend.backend}/token`, {
-            method: "GET",
-            credentials: "include"
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if(data.Type === 0){
-                    this.props.LoggedIn(false)
-                } else {
-                    this.FetchData()
-                }
-            })
-    }
-
     FetchData() {
         // fetch(`${backend.backend}/getData?orders=0`, {
         //     method: "GET",
@@ -50,7 +34,7 @@ export default class DoneRender extends React.Component {
         // if(this.state.Errors > 0){
         //     return ("There was an error with fetching your data")
         // } else if(this.state.Data.length <= 1){
-            this.FetchData()
+            this.FetchToken()
         // }
     }
 

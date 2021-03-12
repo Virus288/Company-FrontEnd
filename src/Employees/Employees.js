@@ -1,11 +1,31 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import GetEmployyes from "./GetEmployyes";
+import { graphql } from "react-apollo";
+import { getUsersQuery, getUserQuery } from "../queries/queries";
 
-export default class Employees extends React.Component {
+class Employees extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+
+        }
+    }
+
+    componentDidMount() {
+        this.props.Context.CheckIfLogged()
+    }
+
+    displayUsers = () => {
+        let data = this.props.data
+        if(data.loading){
+            return(<div>Loading books....</div>)
+        } else {
+            console.log(this.props)
+        //     return data.Users.map(user => {
+        //         return(
+        //             <li key={user.id}>{user.name}</li>
+        //         )
+        //     })
         }
     }
 
@@ -25,9 +45,24 @@ export default class Employees extends React.Component {
                     </Link>
                 </div>
                 <div className="OrdersList">
-                    <GetEmployyes />
+                    { this.displayUsers() }
                 </div>
             </div>
         )
     }
 }
+
+export default graphql(getUserQuery, {
+    options: (props) => {
+        console.log(props.Context.Group)
+        return {
+            variables: {
+                Group: props.Context.Group
+            }
+        }
+    }
+})(Employees)
+
+
+// TODO
+// Apollo database stuff. Apollo as tool sucks

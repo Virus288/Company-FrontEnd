@@ -1,19 +1,20 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import { Context } from "../Contexts/Context";
 
-const logout = () => {
-    return (
-        <Context.Consumer>{(context) => {
+export default class Logout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
 
-            window.sessionStorage.removeItem("user")
-            window.sessionStorage.removeItem("jwt")
-            context.LogIn()
-            return (<Redirect to="/"/>)
-        }}
+        };
+    }
 
-        </Context.Consumer>
-    )
+    componentDidMount() {
+        this.props.Context.LogOut()
+    }
+
+    render() {
+        return (
+            "Loggin out"
+        )
+    }
 }
-
-export default (logout)
